@@ -1,0 +1,22 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-sm-10 col-12">
+            {{ username }}
+            {{ email }}
+            {{ is_teacher }}
+            {{ is_student }}
+            {{ is_employee }}
+            <button
+                    onclick="location.href = location.href +'{{ manage_courses }}'" type="button">MANAGE COURSES
+            </button>
+            <button
+                    onclick="location.href = location.href +'{{ manage_students }}'" type="button">MANAGE STUDENTS
+            </button>
+            <button
+                    onclick="location.href = location.href +'{{ manage_teachers }}'" type="button">MANAGE TEACHERS
+            </button>
+        </div>
+    </div>
+{% endblock %}
