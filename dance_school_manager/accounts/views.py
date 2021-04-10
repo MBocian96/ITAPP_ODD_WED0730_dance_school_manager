@@ -1,18 +1,38 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.shortcuts import render
-
 # Create your views here.
-from authentication_module.models import CustomUser
+from django.utils.decorators import method_decorator
+from django.views import View
+
+from authentication_module.models import CustomUser, EMPLOYEE, TEACHER, STUDENT, UNKNOWN
 
 
-@login_required
-def profile_view(request):
-    # profile = CustomUser.objects.get(email__in=request.email)
-    current_user: CustomUser = request.user
-    result = (
-        current_user.id, current_user.email, current_user.is_teacher, current_user.is_student, current_user.is_employee)
-    return HttpResponse(f"Logged in user is: {str(result)}")
-    # context = {'profile': profile}
-    # template = 'profiles/student_profile.html'
-    # return render(request, template, context)
+class ProfileView(View):
+    def get_context_by(self, user_type):
+        context_by_user_type = {
+            EMPLOYEE: {'manage_courses': 'manage_courses',
+                       'manage_students': 'manage_students',
+                       'manage_teachers': 'manage_teachers',
+                       },
+            STUDENT: {},
+            TEACHER: {},
+        }
+        return context_by_user_type[user_type]
+
+    def get_template_path_by(self, user_type) -> str:
+        user_type_views = {
+            EMPLOYEE: 'employee_profile_view.html',
+            TEACHER: 'teacher_profile_view.html',
+            STUDENT: 'student_profile_view.html',
+            UNKNOWN: None,
+        }
+        return 'profiles/' + user_type_views[user_type]
+
+    @method_decorator(login_required)
+    def get(self, request, *args, **kwargs):
+        current_user_type: CustomUser = request.user.get_user_type()
+
+        context = self.get_context_by(current_user_type)
+        template = self.get_template_path_by(current_user_type)
+
+        return render(request, template, context=context)
