@@ -34,5 +34,7 @@ class ProfileView(View):
 
         context = self.get_context_by(current_user_type)
         template = self.get_template_path_by(current_user_type)
+        context['username'] = request.user.username
+        context['avatar'] = request.user.avatar
 
         return render(request, template, context=context)

@@ -4,10 +4,8 @@
     <div class="row">
         <div class="col-md-8 col-sm-10 col-12">
             {{ username }}
-            {{ email }}
-            {{ is_teacher }}
-            {{ is_student }}
-            {{ is_employee }}
+            {% load static %}
+            <img src="{{ avatar }}" alt="profile avatar"/>
             <button
                     onclick="location.href = location.href +'{{ manage_courses }}'" type="button">MANAGE COURSES
             </button>
