@@ -4,6 +4,11 @@ from django.db import models
 
 from authentication_module.managers import UserManager
 
+EMPLOYEE = 'employee'
+TEACHER = 'teacher'
+STUDENT = 'student'
+UNKNOWN = 'unknown'
+
 
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
@@ -26,14 +31,18 @@ class CustomUser(AbstractBaseUser):
 
     objects = UserManager()
 
-    def __str__(self):
+    def get_user_type(self) -> str:
         if self.is_employee:
-            result = 'employee'
+            return EMPLOYEE
         elif self.is_teacher:
-            result = 'teacher'
+            return TEACHER
+        elif self.is_student:
+            return STUDENT
         else:
-            result = 'Unknown'
-        return result
+            return UNKNOWN
+
+    def __str__(self):
+        return self.get_user_type()
 
     # For checking permissions. to keep it simple all admin have ALL permissons
     def has_perm(self, perm, obj=None):
