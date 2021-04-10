@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication_module',
     'accounts',
+    'employee_module'
 ]
 
 MIDDLEWARE = [
