@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 from authentication_module.managers import UserManager
+from dance_school_manager.settings import IMAGES_ROOT
 
 EMPLOYEE = 'employee'
 TEACHER = 'teacher'
@@ -13,7 +14,7 @@ UNKNOWN = 'unknown'
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30)
-    avatar = models.ImageField(upload_to='images', )
+    avatar = models.ImageField(upload_to=IMAGES_ROOT)
 
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
