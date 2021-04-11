@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 from authentication_module.managers import UserManager
+from courses_module.models import Courses
 from dance_school_manager.settings import IMAGES_ROOT
 
 EMPLOYEE = 'employee'
@@ -30,6 +31,7 @@ class CustomUser(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+    courses = models.ManyToManyField(Courses)
 
     objects = UserManager()
 
