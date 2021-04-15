@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication_module',
-    'accounts',
     'employee_module',
     'courses_module'
 ]
@@ -121,3 +120,4 @@ AUTH_USER_MODEL = 'authentication_module.CustomUser'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 IMAGES_ROOT = os.path.join(MEDIA_ROOT, 'images')
+LOGIN_REDIRECT_URL = 'redirect_by_user_type/'
