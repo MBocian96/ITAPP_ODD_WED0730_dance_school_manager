@@ -5,4 +5,4 @@ from django.views.generic import CreateView
 
 
 class ManageCoursesViews(CreateView):
-    pass
+    template_name = 'profiles/employee/manage_courses_view.html'

@@ -46,7 +46,7 @@ class CustomUser(AbstractBaseUser):
             return UNKNOWN
 
     def __str__(self):
-        return self.get_user_type()
+        return f'{self.email}: {self.username}'
 
     # For checking permissions. to keep it simple all admin have ALL permissons
     def has_perm(self, perm, obj=None):
