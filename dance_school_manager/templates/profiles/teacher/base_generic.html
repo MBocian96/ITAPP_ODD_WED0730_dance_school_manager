@@ -11,6 +11,25 @@
             <img src="{{ avatar }}" alt="profile avatar"/>
 
                  Here should be a list of courses date and room taught by this teacher
+             <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">CourseName</th>
+            <th scope="col">Course Date</th>
+            <th scope="col">Room</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for teacher in customUsers %}
+          <tr>
+            <td>{{ course.name }}</td>
+            <td>{{ course.date }}</td>
+            <td>{{ course.date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
             x
             x
             x
