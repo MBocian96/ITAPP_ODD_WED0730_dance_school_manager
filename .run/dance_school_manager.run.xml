@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="dance_school_manager" type="Python.DjangoServer" factoryName="Django server">
-    <module name="DanceSchoolManager" />
+    <module name="ITAPP_ODD_WED0730_dance_school_manager" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
     <envs>
