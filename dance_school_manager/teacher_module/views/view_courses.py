@@ -4,5 +4,5 @@
 from django.views.generic import CreateView
 
 
-class ViewCourses(CreateView):
+class CoursesListViews(CreateView):
     template_name = 'profiles/teacher/view_courses.html'
