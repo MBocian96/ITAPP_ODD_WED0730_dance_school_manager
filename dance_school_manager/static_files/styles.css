@@ -35,10 +35,9 @@ h1 {
 
 .log-in-p{
     text-align: center;
-    margin:4% auto;
+    margin:4% 25px;
     display: block;
-    font-family: 'Dancing Script', cursive;
-    font-size: 25px;
+    font-size: 20px;
     color: #221812;
 }
 
