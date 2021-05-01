@@ -1,0 +1,14 @@
+{% extends 'profiles/teacher/base_generic.html' %}
+{% block content %}
+    {% if emails_not_found %}
+        Given emails are not found in student register!
+        {% for email in emails_not_found %}
+            {{ email }}
+        {% endfor %}
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{ teacher_form }}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
