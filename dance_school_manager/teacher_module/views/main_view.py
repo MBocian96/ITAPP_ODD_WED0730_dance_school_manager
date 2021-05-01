@@ -12,9 +12,9 @@ class TeacherView(CreateView):
 
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
-        context = {'manage_courses': 'course_names', # CHECK/ADD COURSES LIST OF THIS TEACHER HERE 
+        context = {'courses': 'courses_list', # CHECK/ADD COURSES LIST OF THIS TEACHER HERE
                    'username': request.user.username,
-                   'avatar': request.user.avatar,
+                   # 'avatar': request.user.avatar,
                    }
 
         return render(request, self.template, context=context)

@@ -11,13 +11,20 @@ class EditCoursesViews(View):
     template_name = 'profiles/employee/edit_course_view.html'
 
     def get(self, request, course_id: int):
-        course = get_object_or_404(Courses, id=course_id)
-        students_attended_to_this_course = CustomUser.objects.filter(courses__id=course_id)
+        course = get_object_or_404(Courses, id=course_id) #pobieram konkretny kurs o podanym id jesli go nie ma to renderuje się strona z 404
+
+        students_attended_to_this_course = CustomUser.objects.filter(courses__id=course_id) #
+        # w polu customUser.courses są cursy na które ucześcza # relacja
+        # pobieram userów którzy w tym polu mają kurs o id równym id kursy który teraz edytuje
 
         course_form = CreateCourseForm(initial={'name': course.name, 'description': course.description})
+        # wpisuje do formularza wczesnije wyciągniete dane
+
         for i, student in enumerate(students_attended_to_this_course):
             course_form.initial.update({f'{i}_student': student.email})
             return render(request, self.template_name, {'course_form': course_form})
+        # chodze po wsyzstkich studentach i updateuje po kolei pola ich emailem.
+
 
     def post(self, request, course_id: int, *args, **kwargs):
         course_form = CreateCourseForm(request.POST)
