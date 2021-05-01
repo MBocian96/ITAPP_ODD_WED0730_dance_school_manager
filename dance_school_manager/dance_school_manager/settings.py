@@ -116,8 +116,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static_files'),
+)
+
 AUTH_USER_MODEL = 'authentication_module.CustomUser'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 IMAGES_ROOT = os.path.join(MEDIA_ROOT, 'images')
 LOGIN_REDIRECT_URL = 'redirect_by_user_type/'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
