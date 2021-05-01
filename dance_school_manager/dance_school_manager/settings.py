@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication_module',
     'employee_module',
-    'courses_module'
+    'courses_module',
+    'client_module',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 IMAGES_ROOT = os.path.join(MEDIA_ROOT, 'images')
 LOGIN_REDIRECT_URL = 'redirect_by_user_type/'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

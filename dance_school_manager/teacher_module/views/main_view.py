@@ -6,7 +6,6 @@ from django.utils.decorators import method_decorator
 # Create your views here.
 from django.views.generic import CreateView
 
-
 class TeacherView(CreateView):
     template = 'profiles/teacher/teacher_profile_view.html'
 
