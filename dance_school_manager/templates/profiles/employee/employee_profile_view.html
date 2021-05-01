@@ -1,5 +1,7 @@
 {% extends 'profiles/employee/base_generic.html' %}
 
 {% block content %}
-
+    {% for course in courses %}
+        {{ course }}
+    {% endfor %}
 {% endblock %}
