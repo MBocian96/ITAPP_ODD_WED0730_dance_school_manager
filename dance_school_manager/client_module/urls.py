@@ -1,10 +1,11 @@
 from django.urls import path
 
-from client_module.views import UserView, UserSettingsView
-from employee_module.views.main_view import EmployeeView
-from employee_module.views.manage_courses_view import ManageCoursesViews
+from client_module import views
+from client_module.views import ClientView, ClientSettingsView, AbandonCourse
 
+app_name = 'client_module'
 urlpatterns = [
-    path('', UserView.as_view(), name='user_view'),
-    path('', UserSettingsView.as_view(), name='user_settings_view'),
+    path('', ClientView.as_view(), name='user_view'),
+    path('settings/', ClientSettingsView.as_view(), name='user_settings_view'),
+    path('abandon/<int:pk>', AbandonCourse, name='abandon_course_view'),
 ]
