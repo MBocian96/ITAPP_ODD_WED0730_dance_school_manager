@@ -13,9 +13,9 @@ class EmployeeView(View):
 
     @method_decorator(login_required)
     def get(self, request):
-        local_context = {}
-        local_context.update({'username': request.user.username,
-                              'avatar': request.user.avatar,
-                              })
+        local_context = {'username': request.user.username,
+                         'avatar': request.user.avatar,
+                         }
         local_context.update(self.context)
+
         return render(request, self.template, context=local_context)

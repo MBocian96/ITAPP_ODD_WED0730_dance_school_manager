@@ -1,28 +1,27 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.views import View
+from django.utils.decorators import method_decorator
 
 from authentication_module.models import CustomUser
 from courses_module.models import Courses
 from employee_module.forms.course.create_course_form import CreateCourseForm
+from employee_module.views.employee_main_view import EmployeeView
 
 
-class CreateCourseView(View):
-    template_name = 'profiles/employee/course/create_course_view.html'
-    context = {'course': 'course',
-               'manage_students': 'manage_students',
-               'teacher': 'teacher'
-               }
+class CreateCourseView(EmployeeView):
+    template = 'profiles/employee/course/create_course_view.html'
 
+    @method_decorator(login_required)
     def get(self, request):
         course_form = CreateCourseForm()
         local_context = {'course_form': course_form}
         local_context.update(self.context)
-        return render(request, self.template_name, local_context)
+        return render(request, self.template, local_context)
 
+    @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
         course_form = CreateCourseForm(request.POST)
-        course = None
         if course_form.is_valid():
             name = course_form.cleaned_data['name']
             description = course_form.cleaned_data['description']
@@ -37,8 +36,12 @@ class CreateCourseView(View):
                     except CustomUser.DoesNotExist:
                         emails_not_found.append(email)
             if emails_not_found:
-                return render(request, self.template_name,
-                              {'course_form': course_form, 'emails_not_found': emails_not_found})
+                local_context = {'course_form': course_form,
+                                 'emails_not_found': emails_not_found,
+                                 'username': request.user.username,
+                                 'avatar': request.user.avatar, }
+                local_context.update(self.context)
+                return render(request, self.template, local_context)
             course.save()
             return HttpResponse(f'You created course {str(course)}, and proper')
         else:
@@ -51,3 +54,4 @@ class CreateCourseView(View):
             user.courses.add(course)
         else:
             raise CustomUser.DoesNotExist
+        user.save()
