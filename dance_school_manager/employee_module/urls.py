@@ -3,7 +3,7 @@ from django.urls import path
 from employee_module.views.course.create_course_view import CreateCourseView
 from employee_module.views.course.edit_course_view import EditCourseView
 from employee_module.views.course.manage_courses_view import ManageCoursesView
-from employee_module.views.main_view import EmployeeView
+from employee_module.views.employee_main_view import EmployeeView
 from employee_module.views.teacher.edit_teacher_view import EditTeacherView
 from employee_module.views.teacher.manage_teachers_view import ManageTeachersView
 

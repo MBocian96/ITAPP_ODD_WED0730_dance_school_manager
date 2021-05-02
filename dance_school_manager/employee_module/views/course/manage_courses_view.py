@@ -1,10 +1,9 @@
-# Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 
 from courses_module.models import Courses
-from employee_module.views.main_view import EmployeeView
+from employee_module.views.employee_main_view import EmployeeView
 
 
 class ManageCoursesView(EmployeeView):
@@ -16,5 +15,5 @@ class ManageCoursesView(EmployeeView):
                          'username': request.user.username,
                          'avatar': request.user.avatar,
                          }
-        self.context.update(self.context)
+        local_context.update(self.context)
         return render(request, self.template_name, local_context)

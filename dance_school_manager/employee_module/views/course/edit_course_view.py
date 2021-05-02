@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from authentication_module.models import CustomUser
 from courses_module.models import Courses
 from employee_module.forms.course.create_course_form import CreateCourseForm
-from employee_module.views.main_view import EmployeeView
+from employee_module.views.employee_main_view import EmployeeView
 
 
 class EditCourseView(EmployeeView):
