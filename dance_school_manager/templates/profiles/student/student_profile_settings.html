@@ -1,16 +1,11 @@
-{% extends 'profiles/student/base_generic.html' %}
-
-{% block head %}
-<title>Profile</title>
-{% endblock %}
-
-{% block body %}
-<div class="container">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-    <br>
-</div>
+{% block content %}
+    <h1>Edit Profile Info</h1>
+    <br><br>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button class ="btn btn-secondary">Update</button>
+        </form>
+    </div>
 {% endblock %}

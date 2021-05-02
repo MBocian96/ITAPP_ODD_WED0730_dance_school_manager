@@ -30,6 +30,6 @@ def redirect_by_user_type(request):
     user_type_views = {
         EMPLOYEE: 'employee',
         TEACHER: 'teacher',
-        STUDENT: 'student',
+        STUDENT: 'client',
     }
     return redirect(f'/{user_type_views[logged_user_type]}/')
