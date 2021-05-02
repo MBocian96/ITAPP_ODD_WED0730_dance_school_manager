@@ -1,22 +1,20 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-# Create your views here.
 from django.utils.decorators import method_decorator
-
-# Create your views here.
-from django.views.generic import CreateView
+from django.views import View
 
 
-class EmployeeView(CreateView):
+class EmployeeView(View):
     template = 'profiles/employee/employee_profile_view.html'
+    context = {'manage_courses': '/employee/manage_courses',
+               'manage_students': '/employee/manage_students',
+               'manage_teachers': '/employee/manage_teachers'
+               }
 
     @method_decorator(login_required)
-    def get(self, request, *args, **kwargs):
-        context = {'manage_courses': 'manage_courses',
-                   'manage_students': 'manage_students',
-                   'manage_teachers': 'manage_teachers',
-                   'username': request.user.username,
-                   'avatar': request.user.avatar,
-                   }
-
-        return render(request, self.template, context=context)
+    def get(self, request):
+        local_context = {}
+        local_context.update({'username': request.user.username,
+                              'avatar': request.user.avatar,
+                              })
+        return render(request, self.template, context=local_context)
