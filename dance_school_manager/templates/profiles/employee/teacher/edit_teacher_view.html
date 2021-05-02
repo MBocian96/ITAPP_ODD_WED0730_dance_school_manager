@@ -1,0 +1,16 @@
+{% extends 'profiles/employee/base_generic.html' %}
+{% block content %}
+    {% if courses_not_found %}
+        Given course are not found in courses register! Fix your input or register new course!
+        {% for course in courses_not_found %}
+            {{ course }}
+        {% endfor %}
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            {{ teacher_form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
