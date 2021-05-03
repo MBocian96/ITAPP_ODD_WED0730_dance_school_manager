@@ -8,7 +8,7 @@ from django.views.generic import CreateView
 
 
 class TeacherView(CreateView):
-    template = 'profiles/teacher/teacher_profile_view.html'
+    template = 'profiles/teacher/teacher_profile.html'
 
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):

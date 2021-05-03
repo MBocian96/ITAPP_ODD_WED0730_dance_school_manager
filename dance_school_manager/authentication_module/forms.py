@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserChangeForm
 from django.db import transaction
 
 from authentication_module.models import CustomUser
@@ -18,3 +19,9 @@ class StudentSignUpForm(UserCreationForm):
         user.is_student = True
         user.save()
         return user
+
+class EditProfileForm(UserChangeForm):
+
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email')

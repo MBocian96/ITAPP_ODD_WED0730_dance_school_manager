@@ -12,3 +12,10 @@ from authentication_module.forms import EditProfileForm
 class CoursesListViews(CreateView):
     template_name = 'profiles/teacher/view_courses.html'
 
+    @method_decorator(login_required)
+    def get(self, request, *args, **kwargs):
+        context = {'user': request.user,
+                   'courses_list': request.user.courses.all()
+                   }
+
+        return render(request, self.template_name, context=context)
