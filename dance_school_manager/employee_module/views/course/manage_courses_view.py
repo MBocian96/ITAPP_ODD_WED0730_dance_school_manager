@@ -3,10 +3,10 @@ from django.shortcuts import render
 from django.utils.decorators import method_decorator
 
 from courses_module.models import Courses
-from employee_module.views.employee_main_view import EmployeeView
+from employee_module.views.base.manage_user_view import ManageUserView
 
 
-class ManageCoursesView(EmployeeView):
+class ManageCoursesView(ManageUserView):
     template_name = 'profiles/employee/course/manage_courses_view.html'
 
     @method_decorator(login_required)

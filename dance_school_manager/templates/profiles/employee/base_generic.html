@@ -10,6 +10,9 @@
         {% load static %}
         <img src="{{ avatar }}" alt="profile avatar"/>
         <button
+                onclick="location.href = '{{ home_view }}'" type="button">HOME
+        </button>
+        <button
                 onclick="location.href = '{{ manage_courses }}'" type="button">MANAGE COURSES
         </button>
         <button

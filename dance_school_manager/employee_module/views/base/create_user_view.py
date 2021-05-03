@@ -7,10 +7,10 @@ from django.utils.decorators import method_decorator
 
 from authentication_module.models import CustomUser
 from courses_module.models import Courses
-from employee_module.views.employee_main_view import EmployeeView
+from employee_module.views.base.manage_user_view import ManageUserView
 
 
-class CreateUserView(EmployeeView):
+class CreateUserView(ManageUserView):
     template = '/'
     user_form: Callable
     user_role = 'is_'

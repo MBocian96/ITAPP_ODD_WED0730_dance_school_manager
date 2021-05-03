@@ -6,10 +6,10 @@ from django.utils.decorators import method_decorator
 from authentication_module.models import CustomUser
 from courses_module.models import Courses
 from employee_module.forms.course.create_course_form import CreateCourseForm
-from employee_module.views.employee_main_view import EmployeeView
+from employee_module.views.base.manage_user_view import ManageUserView
 
 
-class CreateCourseView(EmployeeView):
+class CreateCourseView(ManageUserView):
     template = 'profiles/employee/course/create_course_view.html'
 
     @method_decorator(login_required)

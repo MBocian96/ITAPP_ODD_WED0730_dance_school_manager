@@ -1,6 +1,6 @@
-from employee_module.views.employee_main_view import EmployeeView
+from employee_module.views.base.manage_user_view import ManageUserView
 
 
-class ManageTeachersView(EmployeeView):
+class ManageTeachersView(ManageUserView):
     template = 'profiles/employee/teacher/manage_teachers_view.html'
     filter_arg = {'is_teacher': True}
