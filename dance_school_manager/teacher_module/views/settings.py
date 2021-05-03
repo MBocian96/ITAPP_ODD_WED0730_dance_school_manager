@@ -16,8 +16,15 @@ from authentication_module.models import CustomUser
 
 
 class SettingsViews(View):
-    template_name = 'profiles/teacher/settings.html'
+
 
     def get(self, request, customuser_id: int):
         teacher = get_object_or_404(CustomUser, id=customuser_id) #pobieram konkretnego nauczyciela o podanym id jesli go nie ma to strona z 404
 
+    form = TeacherChangeForm
+    template_name = 'profiles/teacher/settings.html'
+    success_url = reverse_lazy('teacher_module:user_view')
+    fields = {'email', 'username'} #teacher can edit given data
+
+    def get_object(self):
+        return self.request.user

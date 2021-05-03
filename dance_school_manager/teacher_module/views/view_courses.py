@@ -12,4 +12,3 @@ from authentication_module.forms import EditProfileForm
 class CoursesListViews(CreateView):
     template_name = 'profiles/teacher/view_courses.html'
 
-    
