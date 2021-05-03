@@ -16,7 +16,7 @@ class EmployeeView(CreateView):
                    'manage_students': 'manage_students',
                    'manage_teachers': 'manage_teachers',
                    'username': request.user.username,
-                   'avatar': request.user.avatar,
+                #   'avatar': request.user.avatar,
                    }
 
         return render(request, self.template, context=context)
