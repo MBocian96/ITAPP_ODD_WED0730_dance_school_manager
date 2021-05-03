@@ -1,5 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 
 from authentication_module.models import CustomUser, ReportedAbsences

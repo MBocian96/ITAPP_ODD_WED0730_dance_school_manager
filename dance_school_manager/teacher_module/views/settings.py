@@ -9,22 +9,32 @@ from django.utils.decorators import method_decorator
 from django.views import  generic
 from django.views.generic import CreateView, DeleteView, UpdateView
 from django.contrib.auth.forms import UserChangeForm
-from authentication_module.forms import EditProfileForm
+
 
 from authentication_module.models import CustomUser
 
 
 
-class SettingsViews(View):
+#class SettingsViews(View):
 
 
-    def get(self, request, customuser_id: int):
-        teacher = get_object_or_404(CustomUser, id=customuser_id) #pobieram konkretnego nauczyciela o podanym id jesli go nie ma to strona z 404
+ #   def get(self, request, customuser_id: int):
+  #      teacher = get_object_or_404(CustomUser, id=customuser_id) #pobieram konkretnego nauczyciela o podanym id jesli go nie ma to strona z 404
 
-    form = TeacherChangeForm
+   # form = UserChangeForm
+    #template_name = 'profiles/teacher/settings.html'
+    #success_url = reverse_lazy('teacher_module:user_view')
+    #fields = {'email', 'username'} #teacher can edit given data
+
+    #def get_object(self):
+    #   return self.request.user
+
+    # Client can edit parameters given in field
+class SettingsViews(UpdateView):
+    form = UserChangeForm
     template_name = 'profiles/teacher/settings.html'
-    success_url = reverse_lazy('teacher_module:user_view')
-    fields = {'email', 'username'} #teacher can edit given data
+    success_url = reverse_lazy('teacher_module:teacher_profile_view')
+    fields = {'email', 'username'}
 
     def get_object(self):
         return self.request.user
