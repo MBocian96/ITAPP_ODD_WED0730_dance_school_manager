@@ -1,0 +1,13 @@
+{% block content %}
+
+
+<p>Are you sure you want to leave the course "{{item.name}}"?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <a href="{% url 'client_module:user_view' %}">Cancel</a>
+
+        <input type="submit" name="Confirm">
+    </form>
+
+{% endblock %}
