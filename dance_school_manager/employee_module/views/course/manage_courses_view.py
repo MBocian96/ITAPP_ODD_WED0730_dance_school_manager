@@ -7,7 +7,9 @@ from employee_module.views.base.manage_user_view import ManageUserView
 
 
 class ManageCoursesView(ManageUserView):
-    template_name = 'profiles/employee/course/manage_courses_view.html'
+    template = 'profiles/employee/course/manage_courses_view.html'
+    filter_arg = {}
+    model = 'courses'
 
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
@@ -16,4 +18,7 @@ class ManageCoursesView(ManageUserView):
                          'avatar': request.user.avatar,
                          }
         local_context.update(self.context)
-        return render(request, self.template_name, local_context)
+        return render(request, self.template, local_context)
+
+    def get_search_result(self, searched):
+        return Courses.objects.filter(name__contains=searched)

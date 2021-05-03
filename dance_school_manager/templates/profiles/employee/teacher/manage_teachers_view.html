@@ -1,6 +1,21 @@
 {% extends 'profiles/employee/base_generic.html' %}
 
 {% block content %}
+    <form class="d-flex"
+          method=POST
+          action={% url 'employee_module:manage_teachers_view' %}>
+        {% csrf_token %}
+        SEARCH FOR TEACHER
+        <input class="form-control me-2"
+               type="search"
+               placeholder="USERNAME"
+               aria-label="Search"
+               name="searched"
+        >
+        <button class="btn btn-outline-secondary"
+                type="submit">SEARCH
+        </button>
+    </form>
     <table>
         {% for user in users %}
             <tr>

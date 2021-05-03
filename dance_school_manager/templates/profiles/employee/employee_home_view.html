@@ -1,35 +1,5 @@
 {% extends 'profiles/employee/base_generic.html' %}
 
 {% block content %}
-    <form class="d-flex"
-          method=POST
-          action={% url 'employee_module:employee_home_view' %}>
-        {% csrf_token %}
-        <input class="form-control me-2"
-               type="search"
-               placeholder="SEARCH FOR USER"
-               aria-label="Search"
-               name="searched"
-        >
-        <button class="btn btn-outline-secondary"
-                type="submit">SEARCH
-        </button>
-    </form>
-    <div style="text-align: center;">
-        {% if searched %}
-            {% for user in result %}
-                {{ user.username }}
-                {{ user.email }}
-                {{ user.avatar }}
-                {{ user.deposit }}
-                {% for course in user.courses.all %}
-                    {{ course }}
-                {% endfor %}
-            {% endfor %}
-        {% else %}
-            NOTHING TO SHOW
-        {% endif %}
-    </div>
-
 {% endblock %}
 

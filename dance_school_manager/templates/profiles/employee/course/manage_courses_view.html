@@ -1,6 +1,20 @@
 {% extends 'profiles/employee/base_generic.html' %}
-
 {% block content %}
+    <form class="d-flex"
+          method=POST
+          action={% url 'employee_module:manage_courses_view' %}>
+        {% csrf_token %}
+        SEARCH FOR COURSE
+        <input class="form-control me-2"
+               type="search"
+               placeholder="NAME"
+               aria-label="Search"
+               name="searched"
+        >
+        <button class="btn btn-outline-secondary"
+                type="submit">SEARCH
+        </button>
+    </form>
     <table>
         {% for course in courses %}
             <tr>
@@ -17,6 +31,5 @@
             </tr>
         {% endfor %}
     </table>
+
 {% endblock %}
-<body>
-</body>

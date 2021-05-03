@@ -14,16 +14,27 @@ class ManageUserView(View):
                'manage_teachers': '/employee/manage_teachers'
                }
     filter_arg = {}
+    model = ''
+
+    def get_search_result(self, searched: str):
+        raise NotImplementedError
+
+    @method_decorator(login_required)
+    def post(self, request):
+        searched = request.POST['searched']
+        result = self.get_search_result(searched)
+        local_context = self.get_default_context(request)
+        local_context.update({self.model: result})
+        return render(request, self.template, local_context)
 
     @method_decorator(login_required)
     def get(self, request):
         local_context = self.get_default_context(request)
-
+        local_context.update({'users': CustomUser.objects.filter(**self.filter_arg)})
         return render(request, self.template, context=local_context)
 
     def get_default_context(self, request):
-        local_context = {'users': CustomUser.objects.filter(**self.filter_arg),
-                         'username': request.user.username,
+        local_context = {'username': request.user.username,
                          'avatar': request.user.avatar,
                          }
         local_context.update(self.context)
