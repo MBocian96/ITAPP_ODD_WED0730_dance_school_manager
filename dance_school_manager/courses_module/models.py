@@ -1,20 +1,9 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from time import time
 
 from django.db import models
 
-from courses_module.utils import get_day_number_by
-from dance_school_manager.settings import HOUR_FORMAT
-
-DAYS_OF_WEEK = (
-    (0, 'Monday'),
-    (1, 'Tuesday'),
-    (2, 'Wednesday'),
-    (3, 'Thursday'),
-    (4, 'Friday'),
-    (5, 'Saturday'),
-    (6, 'Sunday'),
-)
+from dance_school_manager.settings import HOUR_FORMAT, DAYS_OF_WEEK
 
 
 class Courses(models.Model):

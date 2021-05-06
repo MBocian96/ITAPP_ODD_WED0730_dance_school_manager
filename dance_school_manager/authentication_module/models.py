@@ -4,6 +4,7 @@ from datetime import timedelta
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.http import HttpResponse
 
 from authentication_module.managers import UserManager
 from courses_module.models import Courses
@@ -86,8 +87,17 @@ class CustomUser(AbstractBaseUser):
 
 class MissedCourse(models.Model):
     date = models.DateField()
-    related_user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    related_course = models.OneToOneField(Courses, on_delete=models.CASCADE)
+    related_student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, unique=False)
+    related_course = models.ForeignKey(Courses, on_delete=models.CASCADE, unique=False)
 
     def __str__(self):
         return f'MissedCourse: {self.date}, {self.related_course}'
+
+
+def set_absance(request):
+    for course in Courses.objects.all():
+        if course.is_ongoing(timedelta(minutes=+15)):
+            for student in CustomUser.objects.filter(courses__id=course.id):
+                m = MissedCourse(date=datetime.datetime.now(), related_student=student, related_course=course)
+                m.save()
+    return HttpResponse('absances given')
