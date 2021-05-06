@@ -1,4 +1,5 @@
 import datetime
+from datetime import timedelta
 
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AbstractUser
@@ -73,6 +74,14 @@ class CustomUser(AbstractBaseUser):
         missing_course.related_course = course
         missing_course.related_user = user
         missing_course.save()
+
+    def get_ongoing_courses(self, time_delta: timedelta):
+        courses = self.courses.all()
+        current_courses = []
+        for course in courses:
+            if course.is_ongoing(time_delta):
+                current_courses.append(courses)
+        return current_courses
 
 
 class MissedCourse(models.Model):
