@@ -9,4 +9,3 @@ class EmployeeHomeView(ManageUserView):
     def get(self, request):
         local_context = self.get_default_context(request)
         return render(request, self.template, local_context)
-

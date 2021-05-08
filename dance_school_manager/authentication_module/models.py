@@ -85,6 +85,7 @@ class CustomUser(AbstractBaseUser):
         return current_courses
 
 
+
 class MissedCourse(models.Model):
     date = models.DateField()
     related_student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, unique=False)
@@ -101,3 +102,4 @@ def set_absance(request):
                 m = MissedCourse(date=datetime.datetime.now(), related_student=student, related_course=course)
                 m.save()
     return HttpResponse('absances given')
+

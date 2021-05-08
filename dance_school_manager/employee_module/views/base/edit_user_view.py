@@ -16,7 +16,7 @@ class EditUserView(CreateUserView):
     user_form: Callable
 
     @method_decorator(login_required)
-    def get(self, request, user_id: int):
+    def get(self, request, user_id: int, additional_context=dict):
         user = get_object_or_404(CustomUser, id=user_id)
         courses: QuerySet = user.courses.all()
 
@@ -30,6 +30,7 @@ class EditUserView(CreateUserView):
                          'avatar': request.user.avatar,
                          }
         local_context.update(self.context)
+        local_context.update(additional_context)
 
         return render(request, self.template, local_context)
 

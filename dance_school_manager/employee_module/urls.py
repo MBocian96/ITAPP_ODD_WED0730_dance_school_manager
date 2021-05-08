@@ -4,7 +4,7 @@ from employee_module.views.course.create_course_view import CreateCourseView
 from employee_module.views.course.edit_course_view import EditCourseView
 from employee_module.views.course.manage_courses_view import ManageCoursesView
 from employee_module.views.default_employee_view import EmployeeHomeView
-from employee_module.views.student.edit_student_view import EditStudentView
+from employee_module.views.student.edit_student_view import EditStudentView, set_present
 from employee_module.views.student.manage_student_view import ManageStudentsView
 from employee_module.views.teacher.edit_teacher_view import EditTeacherView
 from employee_module.views.teacher.manage_teachers_view import ManageTeachersView
@@ -25,4 +25,5 @@ urlpatterns = [
     # students
     path('manage_students/', ManageStudentsView.as_view(), name='manage_students_view'),
     path('edit_student/<int:user_id>/', EditStudentView.as_view(), name='edit_student_view'),
+    path('set_present/<int:user_id>/<int:course_id>', set_present, name='set_present')
 ]
