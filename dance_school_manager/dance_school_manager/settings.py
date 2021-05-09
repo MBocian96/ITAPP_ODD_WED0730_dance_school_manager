@@ -123,3 +123,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 IMAGES_ROOT = os.path.join(MEDIA_ROOT, 'images')
 LOGIN_REDIRECT_URL = 'redirect_by_user_type/'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+HOUR_FORMAT = '%H:%M'
+DATE_FORMAT = '%Y-%M-%D'
+DAYS_OF_WEEK = (
+    ('0', 'Monday'),
+    ('1', 'Tuesday'),
+    ('2', 'Wednesday'),
+    ('3', 'Thursday'),
+    ('4', 'Friday'),
+    ('5', 'Saturday'),
+    ('6', 'Sunday'),
+)
