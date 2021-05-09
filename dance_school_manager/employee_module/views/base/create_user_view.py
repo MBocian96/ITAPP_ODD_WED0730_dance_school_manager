@@ -17,8 +17,8 @@ class CreateUserView(ManageUserView):
 
     @method_decorator(login_required)
     def get(self, request):
-        course_form = self.user_form()
-        local_context = {'course_form': course_form}
+        user_form = self.user_form()
+        local_context = {'user_form': user_form}
         local_context.update(self.context)
         return render(request, self.template, local_context)
 

@@ -22,7 +22,6 @@ class EditUserView(CreateUserView):
 
         user_form = self.user_form(initial={'username': user.username, 'email': user.email})
         for i, course in enumerate(courses):
-            print({f'{i}_course': course.name})
             user_form.initial.update({f'{i}_course': course.name})
 
         local_context = {'user_form': user_form,

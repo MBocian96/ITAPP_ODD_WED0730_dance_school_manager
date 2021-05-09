@@ -62,28 +62,25 @@ class CustomUser(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-    def get_missed_courses(self):
-        missed_course = MissedCourse.objects.get(related_course__id=self.id)
-        return missed_course.related_course.all()
+    def get_aboslut_absences(self):
+        return [course.related_course for course in MissedCourse.objects.filter(related_student__id=self.id)]
 
-    def add_missing_course(self, related_course_id):
-        # currently_ongoing_course = get_ongoing_course()
-        course = Courses.objects.get(related_course_id)
-        user = CustomUser.objects.get(self.id)
-
-        missing_course = MissedCourse(date=datetime.time())
-        missing_course.related_course = course
-        missing_course.related_user = user
-        missing_course.save()
+    def get_absences(self):
+        absences = MissedCourse.objects.filter(related_student__id=self.id)
+        ongoing = self.get_ongoing_courses(timedelta(minutes=+15))
+        result = []
+        for course in absences:
+            if course.related_course not in ongoing:
+                result.append(course)
+        return result
 
     def get_ongoing_courses(self, time_delta: timedelta):
         courses = self.courses.all()
         current_courses = []
         for course in courses:
             if course.is_ongoing(time_delta):
-                current_courses.append(courses)
+                current_courses.append(course)
         return current_courses
-
 
 
 class MissedCourse(models.Model):
@@ -99,7 +96,6 @@ def set_absance(request):
     for course in Courses.objects.all():
         if course.is_ongoing(timedelta(minutes=+15)):
             for student in CustomUser.objects.filter(courses__id=course.id):
-                m = MissedCourse(date=datetime.datetime.now(), related_student=student, related_course=course)
+                m = MissedCourse(date=datetime.datetime.now().date(), related_student=student, related_course=course)
                 m.save()
     return HttpResponse('absances given')
-
