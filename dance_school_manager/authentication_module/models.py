@@ -24,7 +24,7 @@ class CustomUser(AbstractBaseUser):
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
 
-    # deposit = models.IntegerField(verbose_name="deposit of monet", max_length=2)
+    deposit = models.IntegerField(verbose_name="deposit of monet", default=50)
 
     is_admin = models.BooleanField(default=False)
     is_employee = models.BooleanField(default=False)
