@@ -9,7 +9,7 @@ from dance_school_manager.settings import HOUR_FORMAT, DAYS_OF_WEEK
 class Courses(models.Model):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=100)
-
+    room = models.IntegerField(default=0)
     start_date = models.DateField(default=datetime.now().date())
     days = models.CharField(choices=DAYS_OF_WEEK, default='Monday', max_length=70)
     time = models.TimeField(default=datetime.now().time())

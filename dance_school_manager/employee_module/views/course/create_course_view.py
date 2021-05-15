@@ -25,7 +25,13 @@ class CreateCourseView(ManageUserView):
         if course_form.is_valid():
             name = course_form.cleaned_data['name']
             description = course_form.cleaned_data['description']
-            course = Courses(name=name, description=description)
+            start_date = course_form.cleaned_data['start_date']
+            days = course_form.cleaned_data['days']
+            time = course_form.cleaned_data['time']
+            end_date = course_form.cleaned_data['end_date']
+            course = Courses(name=name, description=description,
+                             start_date=start_date, days=days,
+                             time=time, end_date=end_date)
             emails_not_found = []
 
             for student in course_form.fields.keys():

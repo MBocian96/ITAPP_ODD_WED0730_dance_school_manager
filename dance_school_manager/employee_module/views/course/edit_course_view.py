@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import QuerySet
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.decorators import method_decorator
 
 from authentication_module.models import CustomUser
@@ -18,7 +18,15 @@ class EditCourseView(ManageUserView):
         course = get_object_or_404(Courses, id=course_id)
         students_attended_to_this_course: QuerySet = CustomUser.objects.filter(courses__id=course_id)
 
-        course_form = CreateCourseForm(initial={'name': course.name, 'description': course.description})
+        course_form = CreateCourseForm(
+            initial={'name': course.name,
+                     'description': course.description,
+                     'room': course.room,
+                     'start_date': course.start_date,
+                     'days': course.days,
+                     'time': course.time,
+                     'end_date': course.end_date,
+                     })
         for i, student in enumerate(students_attended_to_this_course):
             course_form.initial.update({f'{i}_student': student.email})
 
@@ -49,8 +57,13 @@ class EditCourseView(ManageUserView):
                                  'avatar': request.user.avatar, }
                 local_context.update(self.context)
                 return render(request, self.template, local_context)
+            course.room = course_form.cleaned_data['room']
+            course.time = course_form.cleaned_data['time']
+            course.start_date = course_form.cleaned_data['start_date']
+            course.end_date = course_form.cleaned_data['end_date']
+            course.days = course_form.cleaned_data['days']
             course.save()
-            return HttpResponse(f'You created course {str(course)}, and proper')
+            return redirect(f'/employee/edit_course/{course_id}')
         else:
             return HttpResponse('Sorry not now')
 
