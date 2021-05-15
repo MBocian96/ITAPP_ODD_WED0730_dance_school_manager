@@ -1,5 +1,4 @@
-import datetime
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AbstractUser
@@ -90,6 +89,10 @@ class MissedCourse(models.Model):
 
     def __str__(self):
         return f'MissedCourse: {self.date}, {self.related_course}'
+
+    @property
+    def date_to_url(self):
+        return datetime.strptime(str(self.date), '%Y-%m-%d')
 
 
 def set_absance(request):
