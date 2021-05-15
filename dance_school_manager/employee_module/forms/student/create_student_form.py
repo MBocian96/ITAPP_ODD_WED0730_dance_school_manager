@@ -4,7 +4,6 @@ from django import forms
 class CreateStudentForm(forms.Form):
     username = forms.CharField(label='User username', max_length=20)
     email = forms.EmailField(max_length=60)
-    password = forms.CharField(widget=forms.PasswordInput())
 
     def __init__(self, *args, **kwargs):
         super(CreateStudentForm, self).__init__(*args, **kwargs)
