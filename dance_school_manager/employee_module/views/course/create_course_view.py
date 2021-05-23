@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 
@@ -12,14 +13,12 @@ from employee_module.views.base.manage_user_view import ManageUserView
 class CreateCourseView(ManageUserView):
     template = 'profiles/employee/course/create_course_view.html'
 
-    @method_decorator(login_required)
     def get(self, request):
         course_form = CreateCourseForm()
         local_context = {'course_form': course_form}
         local_context.update(self.context)
         return render(request, self.template, local_context)
 
-    @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
         course_form = CreateCourseForm(request.POST)
         if course_form.is_valid():

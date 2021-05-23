@@ -1,8 +1,9 @@
-from datetime import timedelta, datetime
+from datetime import timedelta
 from typing import List
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 
 from authentication_module.models import CustomUser, MissedCourse
@@ -16,13 +17,12 @@ class EditStudentView(EditUserView):
     user_form = CreateStudentForm
     user_role = 'is_student'
 
-    @method_decorator(login_required)
     def get(self, request, user_id: int):
         student = get_object_or_404(CustomUser, id=user_id)
         absences_to_show: List[Courses] = student.get_absences()
         ongoing_courses = student.get_ongoing_courses(timedelta(minutes=15))
         marked_as_present = get_marked_as_present(ongoing_courses, student.get_aboslut_absences())
-        date = datetime.now().date()
+        date = timezone.now().date()
         additional_context = {'ongoing_courses': ongoing_courses,
                               'deposit': student.deposit,
                               'student': student,

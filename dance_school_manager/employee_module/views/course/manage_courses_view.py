@@ -11,7 +11,6 @@ class ManageCoursesView(ManageUserView):
     filter_arg = {}
     model = 'courses'
 
-    @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
         local_context = {'courses': Courses.objects.all(),
                          'username': request.user.username,

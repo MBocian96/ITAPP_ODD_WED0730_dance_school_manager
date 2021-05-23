@@ -15,7 +15,6 @@ class EditUserView(CreateUserView):
     template = ''
     user_form: Callable
 
-    @method_decorator(login_required)
     def get(self, request, user_id: int, additional_context=dict):
         user = get_object_or_404(CustomUser, id=user_id)
         courses: QuerySet = user.courses.all()
@@ -33,8 +32,7 @@ class EditUserView(CreateUserView):
 
         return render(request, self.template, local_context)
 
-    @method_decorator(login_required())
-    def post(self, request, user_id: int, *args, **kwargs):
+    def post(self, request, user_id: int):
         user_form = self.user_form(request.POST)
         user = get_object_or_404(CustomUser, id=user_id)
         if user_form.is_valid():

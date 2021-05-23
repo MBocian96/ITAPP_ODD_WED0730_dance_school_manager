@@ -15,15 +15,13 @@ class CreateUserView(ManageUserView):
     user_form: Callable
     user_role = 'is_'
 
-    @method_decorator(login_required)
     def get(self, request):
         user_form = self.user_form()
         local_context = {'user_form': user_form}
         local_context.update(self.context)
         return render(request, self.template, local_context)
 
-    @method_decorator(login_required)
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         user_form = self.user_form(request.POST)
         if user_form.is_valid():
             name = user_form.cleaned_data['username']

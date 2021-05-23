@@ -13,7 +13,6 @@ from employee_module.views.base.manage_user_view import ManageUserView
 class EditCourseView(ManageUserView):
     template = 'profiles/employee/course/edit_course_view.html'
 
-    @method_decorator(login_required)
     def get(self, request, course_id: int):
         course = get_object_or_404(Courses, id=course_id)
         students_attended_to_this_course: QuerySet = CustomUser.objects.filter(courses__id=course_id)
@@ -37,7 +36,6 @@ class EditCourseView(ManageUserView):
         local_context.update(self.context)
         return render(request, self.template, local_context)
 
-    @method_decorator(login_required)
     def post(self, request, course_id: int):
         course_form = CreateCourseForm(request.POST)
         if course_form.is_valid():
