@@ -95,10 +95,11 @@ class MissedCourse(models.Model):
         return datetime.strptime(str(self.date), '%Y-%m-%d')
 
 
-def set_absance(request):
+def set_absence_for_ongoing_courses(request):
     for course in Courses.objects.all():
         if course.is_ongoing(timedelta(minutes=+15)):
             for student in CustomUser.objects.filter(courses__id=course.id):
-                m = MissedCourse(date=datetime.datetime.now().date(), related_student=student, related_course=course)
+                from django.utils import timezone
+                m = MissedCourse(date=timezone.now().date(), related_student=student, related_course=course)
                 m.save()
     return HttpResponse('absances given')
