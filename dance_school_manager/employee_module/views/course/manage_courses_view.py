@@ -1,6 +1,4 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from django.utils.decorators import method_decorator
 
 from courses_module.models import Courses
 from employee_module.views.base.manage_user_view import ManageUserView

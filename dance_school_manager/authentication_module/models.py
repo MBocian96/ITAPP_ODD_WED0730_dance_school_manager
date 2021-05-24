@@ -3,7 +3,6 @@ from datetime import timedelta, datetime
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.http import HttpResponse
 
 from authentication_module.managers import UserManager
 from courses_module.models import Courses
@@ -102,4 +101,3 @@ def set_absence_for_ongoing_courses(request):
                 from django.utils import timezone
                 m = MissedCourse(date=timezone.now().date(), related_student=student, related_course=course)
                 m.save()
-    return HttpResponse('absances given')

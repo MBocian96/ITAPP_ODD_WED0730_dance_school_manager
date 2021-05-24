@@ -1,10 +1,7 @@
 from typing import Callable
 
-from django.contrib.auth.decorators import login_required
 from django.db.models import QuerySet
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from django.utils.decorators import method_decorator
 
 from authentication_module.models import CustomUser
 from courses_module.models import Courses
@@ -34,6 +31,8 @@ class EditUserView(CreateUserView):
 
     def post(self, request, user_id: int):
         user_form = self.user_form(request.POST)
+        local_context = {'user_form': user_form}
+        local_context.update(self.context)
         user = get_object_or_404(CustomUser, id=user_id)
         if user_form.is_valid():
             courses_not_found = []
@@ -45,12 +44,13 @@ class EditUserView(CreateUserView):
                     except Courses.DoesNotExist:
                         courses_not_found.append(course_name)
             if courses_not_found:
-                local_context = {'user_form': user_form, 'courses_not_found': courses_not_found}
-                local_context.update(self.context)
+                local_context.update({'courses_not_found': courses_not_found})
                 return render(request, self.template, local_context)
             user.username = user_form.username
             user.email = user_form.email
             user.save()
-            return HttpResponse(f'You have just updated user {user.username}')
+            local_context.update({'warrning': f'You edited user{str(user)}'})
+            return render(request, self.template, local_context)
         else:
-            return HttpResponse('Sorry not now')
+            local_context.update({'warrning': 'user can not be edited'})
+            return render(request, self.template, local_context)

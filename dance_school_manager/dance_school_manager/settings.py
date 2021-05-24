@@ -119,7 +119,7 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'authentication_module.CustomUser'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-IMAGES_ROOT = os.path.join(MEDIA_ROOT, 'images')
+IMAGES_ROOT = 'media/'
 LOGIN_REDIRECT_URL = 'redirect_by_user_type/'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 HOUR_FORMAT = '%H:%M'
@@ -133,3 +133,8 @@ DAYS_OF_WEEK = (
     ('5', 'Saturday'),
     ('6', 'Sunday'),
 )
+CRON_CLASSES = [
+    'dance_school_manager.cron.AbsanceCron'
+]
+USE_TZ = True
+LOGOUT_REDIRECT_URL = '/authentication/login/'

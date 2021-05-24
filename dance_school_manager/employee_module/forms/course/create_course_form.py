@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta
-
 from django import forms
 
 from dance_school_manager.settings import DAYS_OF_WEEK

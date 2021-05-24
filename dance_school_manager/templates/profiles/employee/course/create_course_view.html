@@ -6,6 +6,9 @@
             {{ email }}
         {% endfor %}
     {% endif %}
+    {% if warrnings %}
+        {{ warrnings }}
+    {% endif %}
     <form method="post">
         {% csrf_token %}
         {{ course_form }}
