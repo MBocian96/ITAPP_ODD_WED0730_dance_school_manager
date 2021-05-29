@@ -7,6 +7,8 @@ from django.views import View, generic
 from django.views.generic import CreateView, DeleteView, UpdateView
 from django.contrib.auth.forms import UserChangeForm
 from authentication_module.forms import EditProfileForm
+
+
 # Create your views here.
 
 
@@ -23,7 +25,6 @@ class ClientView(CreateView):
         return render(request, self.template_name, context=context)
 
 
-
 # Client can edit parameters given in field
 class ClientSettingsView(UpdateView):
     form = UserChangeForm
@@ -35,8 +36,7 @@ class ClientSettingsView(UpdateView):
         return self.request.user
 
 
-
-#Client can leave course (deletes course from the database not just client's list, fuck)
+# Client can leave course (deletes course from the database not just client's list, fuck)
 def AbandonCourse(request, pk):
     user = request.user
     to_delete = user.courses.get(id=pk)
@@ -48,12 +48,24 @@ def AbandonCourse(request, pk):
     return render(request, 'profiles/student/abandon_course.html', context)
 
 
+# Callendar view
 
+class CallendarView(CreateView):
+    template = 'profiles/student/callendar_view.html'
 
+    def get(self, request, *args, **kwargs):
+        courses_list = request.user.courses.all()
+        monday = [course for course in courses_list if course.days == '0']
+        tuesday = [course for course in courses_list if course.days == '1']
+        wednesday = [course for course in courses_list if course.days == '2']
+        thursday = [course for course in courses_list if course.days == '3']
+        friday = [course for course in courses_list if course.days == '4']
 
+        context = {'monday': monday,
+                   'tuesday': tuesday,
+                   'wednesday': wednesday,
+                   'thursday': thursday,
+                   'friday': friday,
+                   'user': request.user,}
 
-
-
-
-
-
+        return render(request, self.template, context=context)
