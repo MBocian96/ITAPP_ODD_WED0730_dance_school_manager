@@ -3,7 +3,7 @@ from django.views.generic import CreateView
 
 
 class CalendarViews(CreateView):
-    template = 'profiles/student/calendar_view.html'
+    template = 'profiles/teacher/calendar_view.html'
 
     def get(self, request, *args, **kwargs):
         courses_list = request.user.courses.all()
