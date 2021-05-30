@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}<title>Local Library</title>{% endblock %}
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="row">
+    <div class="col-md-8 col-sm-10 col-12">
+        "test"
+        <img src="" alt="profile avatar">
+        <button class="submit-btn" onclick="location.href = '/employee/'" type="button">HOME
+        </button>
+        <button class="submit-btn" onclick="location.href = '/employee/manage_courses'" type="button">MANAGE COURSES
+        </button>
+        <button class="submit-btn" onclick="location.href = '/employee/manage_students'" type="button">MANAGE STUDENTS
+        </button>
+        <button class="submit-btn" onclick="location.href = '/employee/manage_teachers'" type="button">MANAGE TEACHERS
+        </button>
+    </div>
+</div>
+{% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
+{% block content %}<!-- default content text (typically empty) -->{% endblock %}
+</body>
+</html>
