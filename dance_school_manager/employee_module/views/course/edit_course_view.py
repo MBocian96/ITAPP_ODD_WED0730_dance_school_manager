@@ -34,7 +34,7 @@ class EditCourseView(ManageUserView):
         return render(request, self.template, local_context)
 
     def post(self, request, course_id: int):
-        course_form = CreateCourseForm(request.POST)
+        course_form = CreateCourseForm(request.POST) 
         local_context = {'course_form': course_form,
                          'username': request.user.username,
                          'avatar': request.user.avatar, }
@@ -53,7 +53,9 @@ class EditCourseView(ManageUserView):
                 local_context.update(self.context)
                 return render(request, self.template, local_context)
             course.room = course_form.cleaned_data['room']
+            course.name = course_form.cleaned_data['name']
             course.time = course_form.cleaned_data['time']
+            course.description = course_form.cleaned_data['description']
             course.start_date = course_form.cleaned_data['start_date']
             course.end_date = course_form.cleaned_data['end_date']
             course.days = course_form.cleaned_data['days']
