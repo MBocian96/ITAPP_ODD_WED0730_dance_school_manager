@@ -25,7 +25,8 @@ class CreateUserView(ManageUserView):
         if user_form.is_valid():
             name = user_form.cleaned_data['username']
             email = user_form.cleaned_data['email']
-            student = CustomUser(username=name, email=email, is_teacher=True)
+            password = user_form.cleaned_data['password']
+            student = CustomUser(username=name, email=email, password=password, _teacher=True)
             courses_not_found = []
             for field in user_form.fields.keys():
                 if field.endswith('course'):
