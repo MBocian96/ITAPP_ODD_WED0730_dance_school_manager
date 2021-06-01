@@ -1,0 +1,17 @@
+<h1>{{ user.username }}</h1>
+{% block content %}
+    {% for day in days %}
+        <h2>{{ day.0 }}</h2>
+        {% for course in day.1 %}
+            <table>
+                <tr>
+                    <th> {{ course.name }}</th>
+                    <th> {{ course.start_date }}</th>
+                    <th> {{ course.end_date }}</th>
+                </tr>
+            </table>
+        {% endfor %}
+    {% endfor %}
+    <a href="{% url 'client_module:user_view' %}">Main Page</a>
+{% endblock %}
+

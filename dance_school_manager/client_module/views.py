@@ -7,6 +7,8 @@ from django.views import View, generic
 from django.views.generic import CreateView, DeleteView, UpdateView
 from django.contrib.auth.forms import UserChangeForm
 from authentication_module.forms import EditProfileForm
+from operator import attrgetter
+
 
 
 # Create your views here.
@@ -50,22 +52,20 @@ def AbandonCourse(request, pk):
 
 # Callendar view
 
-class CallendarView(CreateView):
-    template = 'profiles/student/callendar_view.html'
+class CalendarView(CreateView):
+    template = 'profiles/student/calendar_view.html'
 
     def get(self, request, *args, **kwargs):
         courses_list = request.user.courses.all()
-        monday = [course for course in courses_list if course.days == '0']
-        tuesday = [course for course in courses_list if course.days == '1']
-        wednesday = [course for course in courses_list if course.days == '2']
-        thursday = [course for course in courses_list if course.days == '3']
-        friday = [course for course in courses_list if course.days == '4']
+        days = [('Monday', [course for course in courses_list if course.days == '0']),
+                ('Tuesday', [course for course in courses_list if course.days == '1']),
+                ('Wednesday', [course for course in courses_list if course.days == '2']),
+                ('Thursday', [course for course in courses_list if course.days == '3']),
+                ('Friday', [course for course in courses_list if course.days == '4'])
+                ]
+        for day in days:
+            day[1].sort(key=attrgetter('start_date'))
 
-        context = {'monday': monday,
-                   'tuesday': tuesday,
-                   'wednesday': wednesday,
-                   'thursday': thursday,
-                   'friday': friday,
-                   'user': request.user,}
+        context = {'days': days, 'user': request.user}
 
         return render(request, self.template, context=context)
