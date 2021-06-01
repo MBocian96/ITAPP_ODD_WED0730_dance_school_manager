@@ -26,7 +26,6 @@ class EditUserView(CreateUserView):
                          }
         local_context.update(self.context)
         local_context.update(additional_context)
-
         return render(request, self.template, local_context)
 
     def post(self, request, user_id: int):
