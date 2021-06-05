@@ -44,7 +44,7 @@ def AbandonCourse(request, pk):
     to_delete = user.courses.get(id=pk)
     context = {'item': to_delete}
     if request.method == "POST":
-        to_delete.delete()
+        to_delete.remove()
         return redirect('client_module:user_view')
 
     return render(request, 'profiles/student/abandon_course.html', context)
