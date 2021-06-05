@@ -21,7 +21,8 @@ class ClientView(CreateView):
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
         context = {'user': request.user,
-                   'courses_list': request.user.courses.all()
+                   'courses_list': request.user.courses.all(),
+                   'deposit': request.user.deposit
                    }
 
         return render(request, self.template_name, context=context)
@@ -44,7 +45,7 @@ def AbandonCourse(request, pk):
     to_delete = user.courses.get(id=pk)
     context = {'item': to_delete}
     if request.method == "POST":
-        to_delete.remove()
+        request.user.courses.remove(to_delete)
         return redirect('client_module:user_view')
 
     return render(request, 'profiles/student/abandon_course.html', context)
