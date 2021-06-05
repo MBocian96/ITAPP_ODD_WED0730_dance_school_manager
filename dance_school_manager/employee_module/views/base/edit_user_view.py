@@ -1,10 +1,7 @@
 from typing import Callable
 
-from django.contrib.auth.decorators import login_required
 from django.db.models import QuerySet
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from django.utils.decorators import method_decorator
 
 from authentication_module.models import CustomUser
 from courses_module.models import Courses
@@ -15,14 +12,12 @@ class EditUserView(CreateUserView):
     template = ''
     user_form: Callable
 
-    @method_decorator(login_required)
     def get(self, request, user_id: int, additional_context=dict):
         user = get_object_or_404(CustomUser, id=user_id)
         courses: QuerySet = user.courses.all()
 
         user_form = self.user_form(initial={'username': user.username, 'email': user.email})
         for i, course in enumerate(courses):
-            print({f'{i}_course': course.name})
             user_form.initial.update({f'{i}_course': course.name})
 
         local_context = {'user_form': user_form,
@@ -34,9 +29,10 @@ class EditUserView(CreateUserView):
 
         return render(request, self.template, local_context)
 
-    @method_decorator(login_required())
-    def post(self, request, user_id: int, *args, **kwargs):
+    def post(self, request, user_id: int):
         user_form = self.user_form(request.POST)
+        local_context = {'user_form': user_form}
+        local_context.update(self.context)
         user = get_object_or_404(CustomUser, id=user_id)
         if user_form.is_valid():
             courses_not_found = []
@@ -48,12 +44,13 @@ class EditUserView(CreateUserView):
                     except Courses.DoesNotExist:
                         courses_not_found.append(course_name)
             if courses_not_found:
-                local_context = {'user_form': user_form, 'courses_not_found': courses_not_found}
-                local_context.update(self.context)
+                local_context.update({'courses_not_found': courses_not_found})
                 return render(request, self.template, local_context)
             user.username = user_form.username
             user.email = user_form.email
             user.save()
-            return HttpResponse(f'You have just updated user {user.username}')
+            local_context.update({'warrning': f'You edited user{str(user)}'})
+            return render(request, self.template, local_context)
         else:
-            return HttpResponse('Sorry not now')
+            local_context.update({'warrning': 'user can not be edited'})
+            return render(request, self.template, local_context)

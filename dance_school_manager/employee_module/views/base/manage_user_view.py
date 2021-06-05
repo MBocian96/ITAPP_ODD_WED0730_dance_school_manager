@@ -1,6 +1,4 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from django.utils.decorators import method_decorator
 from django.views import View
 
 from authentication_module.models import CustomUser
@@ -19,7 +17,6 @@ class ManageUserView(View):
     def get_search_result(self, searched: str):
         raise NotImplementedError
 
-    @method_decorator(login_required)
     def post(self, request):
         searched = request.POST['searched']
         result = self.get_search_result(searched)
@@ -27,7 +24,6 @@ class ManageUserView(View):
         local_context.update({self.model: result})
         return render(request, self.template, local_context)
 
-    @method_decorator(login_required)
     def get(self, request):
         local_context = self.get_default_context(request)
         local_context.update({'users': CustomUser.objects.filter(**self.filter_arg)})

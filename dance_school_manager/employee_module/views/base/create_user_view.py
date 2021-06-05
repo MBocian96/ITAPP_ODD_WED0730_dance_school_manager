@@ -1,9 +1,6 @@
 from typing import Callable
 
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.shortcuts import render
-from django.utils.decorators import method_decorator
 
 from authentication_module.models import CustomUser
 from courses_module.models import Courses
@@ -15,16 +12,16 @@ class CreateUserView(ManageUserView):
     user_form: Callable
     user_role = 'is_'
 
-    @method_decorator(login_required)
     def get(self, request):
-        course_form = self.user_form()
-        local_context = {'course_form': course_form}
+        user_form = self.user_form()
+        local_context = {'user_form': user_form}
         local_context.update(self.context)
         return render(request, self.template, local_context)
 
-    @method_decorator(login_required)
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         user_form = self.user_form(request.POST)
+        local_context = {'user_form': user_form}
+        local_context.update(self.context)
         if user_form.is_valid():
             name = user_form.cleaned_data['username']
             email = user_form.cleaned_data['email']
@@ -38,15 +35,16 @@ class CreateUserView(ManageUserView):
                     except Courses.DoesNotExist:
                         courses_not_found.append(course_name)
             if courses_not_found:
-                local_context = {'user_form': user_form, 'courses_not_found': courses_not_found}
-                local_context.update(self.context)
+                local_context.update({'courses_not_found': courses_not_found})
                 return render(request, self.template, local_context)
             student.username = user_form.username
             student.email = user_form.email
             student.save()
-            return HttpResponse(f'You have just created NEW student {student.username}')
+            local_context.update({'warrning': f'You created student{str(student)}'})
+            return render(request, self.template, local_context)
         else:
-            return HttpResponse('Sorry not now')
+            local_context.update({'warrning': 'User can not be created'})
+            return render(request, self.template, local_context)
 
     def assign_course_to_user(self, user: CustomUser, course_name):
         course = Courses.objects.get(name=course_name)

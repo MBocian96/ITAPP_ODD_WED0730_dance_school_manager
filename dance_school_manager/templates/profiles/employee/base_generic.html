@@ -2,25 +2,19 @@
 <html lang="en">
 <head>
     {% block title %}<title>Local Library</title>{% endblock %}
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="row">
     <div class="col-md-8 col-sm-10 col-12">
-        {{ username }}
         {% load static %}
-        <img src="{{ avatar }}" alt="profile avatar"/>
-        <button
-                onclick="location.href = '{{ home_view }}'" type="button">HOME
-        </button>
-        <button
-                onclick="location.href = '{{ manage_courses }}'" type="button">MANAGE COURSES
-        </button>
-        <button
-                onclick="location.href = '{{ manage_students }}'" type="button">MANAGE STUDENTS
-        </button>
-        <button
-                onclick="location.href = '{{ manage_teachers }}'" type="button">MANAGE TEACHERS
-        </button>
+        <nav>
+        <button class="submit-btn" onclick="location.href = '{{ manage_courses }}'" type="button">MANAGE COURSES</button>
+        <button class="submit-btn" onclick="location.href = '{{ manage_students }}'" type="button">MANAGE STUDENTS</button>
+        <button class="submit-btn" onclick="location.href = '{{ manage_teachers }}'" type="button">MANAGE TEACHERS</button>
+            <button class="submit-btn" onclick="location.href = '{{ home_view }}'" type="button">PROFILE/LOGOUT
+        </nav>
     </div>
 </div>
 {% block sidebar %}{% endblock %}

@@ -1,6 +1,4 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from django.utils.decorators import method_decorator
 
 from courses_module.models import Courses
 from employee_module.views.base.manage_user_view import ManageUserView
@@ -11,7 +9,6 @@ class ManageCoursesView(ManageUserView):
     filter_arg = {}
     model = 'courses'
 
-    @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
         local_context = {'courses': Courses.objects.all(),
                          'username': request.user.username,
