@@ -23,10 +23,7 @@ class CreateUserView(ManageUserView):
         local_context = {'user_form': user_form}
         local_context.update(self.context)
         if user_form.is_valid():
-            name = user_form.cleaned_data['username']
-            email = user_form.cleaned_data['email']
-            password = user_form.cleaned_data['password']
-            student = CustomUser(username=name, email=email, password=password, _teacher=True)
+            student = self.assign_data_to_new_user_object(user_form)
             courses_not_found = []
             for field in user_form.fields.keys():
                 if field.endswith('course'):
@@ -38,9 +35,6 @@ class CreateUserView(ManageUserView):
             if courses_not_found:
                 local_context.update({'courses_not_found': courses_not_found})
                 return render(request, self.template, local_context)
-            student.username = user_form.username
-            student.email = user_form.email
-            student.save()
             local_context.update({'warrning': f'You created student{str(student)}'})
             return render(request, self.template, local_context)
         else:
@@ -54,3 +48,6 @@ class CreateUserView(ManageUserView):
         else:
             raise Courses.DoesNotExist
         user.save()
+
+    def assign_data_to_new_user_object(self, user_form):
+        pass

@@ -1,14 +1,11 @@
 {% extends 'profiles/employee/base_generic.html' %}
 
 {% block content %}
-<div class="container">
-    <div class="showcase">
-         <span class="home_h1"><h1>You are logged in as an employee</h1></span>
-         <span class="home_h2"><h2>USER DATA</h2></span>
+    <div class="container">
+     <div class="showcase">
         <span class="img_ud"><img src="{{ avatar }}" alt="profile avatar"></span>
-         <span class="userdatah"><p>User name: {{ username }}</p></span>
-         <a href="/authentication/logout"><p>LOGOUT</p></a>
+         <span class="userdatah"><p> Hello: {{ username }}</p></span>
      </div>
-</div>
+    </div>
 {% endblock %}
 

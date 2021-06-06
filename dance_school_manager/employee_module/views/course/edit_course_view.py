@@ -1,5 +1,5 @@
 from django.db.models import QuerySet
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from authentication_module.models import CustomUser
 from courses_module.models import Courses
@@ -29,15 +29,18 @@ class EditCourseView(ManageUserView):
         local_context = {'course_form': course_form,
                          'username': request.user.username,
                          'avatar': request.user.avatar,
+                         'course_id' : course_id,
                          }
         local_context.update(self.context)
         return render(request, self.template, local_context)
 
     def post(self, request, course_id: int):
-        course_form = CreateCourseForm(request.POST) 
+        course_form = CreateCourseForm(request.POST)
         local_context = {'course_form': course_form,
                          'username': request.user.username,
-                         'avatar': request.user.avatar, }
+                         'avatar': request.user.avatar,
+                         'course_id': course_id,
+                         }
         if course_form.is_valid():
             course = Courses.objects.get(id=course_id)
             emails_not_found = []
@@ -74,3 +77,14 @@ class EditCourseView(ManageUserView):
         else:
             raise CustomUser.DoesNotExist
         user.save()
+
+
+def remove_student_from_course(request, student_email, course_id):
+    if student_email != "None":
+        user = CustomUser.objects.get(email=student_email)
+        if user.is_student:
+            user.courses.remove(Courses.objects.get(pk=course_id))
+        else:
+            return redirect(f'/employee/edit_course/{course_id}')
+        user.save()
+    return redirect(f'/employee/edit_course/{course_id}')

@@ -10,14 +10,19 @@
     <div class="col-md-8 col-sm-10 col-12">
         {% load static %}
         <nav>
-        <button class="submit-btn" onclick="location.href = '{{ home_view }}'" type="button">HOME
-        </button>
-        <button class="submit-btn" onclick="location.href = '{{ manage_courses }}'" type="button">MANAGE COURSES
-        </button>
-        <button class="submit-btn" onclick="location.href = '{{ manage_students }}'" type="button">MANAGE STUDENTS
-        </button>
-        <button class="submit-btn" onclick="location.href = '{{ manage_teachers }}'" type="button">MANAGE TEACHERS
-        </button>
+            <button class="submit-btn" onclick="location.href = '{{ home_view }}'" type="button">HOME
+            </button>
+            <button class="submit-btn" onclick="location.href = '{{ manage_courses }}'" type="button">MANAGE COURSES
+            </button>
+            <button class="submit-btn" onclick="location.href = '{{ manage_students }}'" type="button">MANAGE STUDENTS
+            </button>
+            <button class="submit-btn" onclick="location.href = '{{ manage_teachers }}'" type="button">MANAGE TEACHERS
+            </button>
+
+            <button class="submit-btn" type="button">LOGOUT
+                <a href="/authentication/logout">
+                </a>
+            </button>
         </nav>
     </div>
 </div>

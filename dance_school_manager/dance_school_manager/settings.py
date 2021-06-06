@@ -142,3 +142,6 @@ CRON_CLASSES = [
 ]
 USE_TZ = True
 LOGOUT_REDIRECT_URL = '/authentication/login/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)

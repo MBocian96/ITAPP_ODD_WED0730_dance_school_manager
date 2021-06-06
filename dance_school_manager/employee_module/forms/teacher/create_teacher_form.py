@@ -1,10 +1,12 @@
 from django import forms
 
+from authentication_module.models import CustomUser
+
 
 class CreateTeacherForm(forms.Form):
     username = forms.CharField(label='Teacher username', max_length=20)
     email = forms.EmailField(max_length=60)
-    password = forms.PasswordInput()
+    password = forms.CharField(max_length=32, widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):
         super(CreateTeacherForm, self).__init__(*args, **kwargs)

@@ -1,10 +1,8 @@
 from datetime import timedelta
 from typing import List
 
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import timezone
-from django.utils.decorators import method_decorator
 
 from authentication_module.models import CustomUser, MissedCourse
 from courses_module.models import Courses
@@ -48,9 +46,20 @@ def get_marked_as_present(ongoing, absences):
 
 
 def substract_deposit(student):  # run 15min before course end
-    ongoing_courses = student.get_ongoing_courses(timedelta(minutes=0)) #list of objects course
-    absences = student.get_aboslut_absences() #list of objects course
-
+    ongoing_courses = student.get_ongoing_courses(timedelta(minutes=0))
+    absences = student.get_aboslut_absences()
     for course in ongoing_courses:
         if course in absences:
             student.deposit -= 15
+
+
+def remove_course_from_student(course_name, student_id):
+    print("\n\n\n\n", course_name, "\n", student_id)
+    if course_name != "None":
+        user = CustomUser.objects.get(pk=student_id)
+        if user.is_student:
+            user.courses.remove(Courses.objects.get(name=course_name))
+        else:
+            return redirect(f'/employee/edit_student/{student_id}')
+        user.save()
+    return redirect(f'/employee/edit_student/{student_id}')

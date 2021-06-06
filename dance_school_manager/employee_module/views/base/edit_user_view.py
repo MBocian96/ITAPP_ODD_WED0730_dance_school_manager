@@ -12,7 +12,7 @@ class EditUserView(CreateUserView):
     template = ''
     user_form: Callable
 
-    def get(self, request, user_id: int, additional_context=dict):
+    def get(self, request, user_id, additional_context={}):
         user = get_object_or_404(CustomUser, id=user_id)
         courses: QuerySet = user.courses.all()
 
