@@ -29,7 +29,7 @@ class EditCourseView(ManageUserView):
         local_context = {'course_form': course_form,
                          'username': request.user.username,
                          'avatar': request.user.avatar,
-                         'course_id' : course_id,
+                         'course_id': course_id,
                          }
         local_context.update(self.context)
         return render(request, self.template, local_context)
