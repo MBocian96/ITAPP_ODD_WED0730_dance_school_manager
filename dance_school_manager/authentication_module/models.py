@@ -14,6 +14,7 @@ STUDENT = 'student'
 UNKNOWN = 'unknown'
 
 
+
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30)
@@ -23,6 +24,7 @@ class CustomUser(AbstractBaseUser):
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
 
     deposit = models.IntegerField(verbose_name="deposit of monet", default=50)
+
 
     is_admin = models.BooleanField(default=False)
     is_employee = models.BooleanField(default=False)
