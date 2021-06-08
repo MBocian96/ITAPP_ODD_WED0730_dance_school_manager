@@ -1,1 +1,2 @@
 Django~=3.2
+django-crontab==0.7.1
