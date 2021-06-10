@@ -3,35 +3,15 @@
     {% load static %}
     <img src="{{ avatar }}" alt="profile avatar"/>
 
-    <h1> Here are your courses dear {{ username }}</h1>
-
-    <table>
-     <tr>
-                <th> Name of the course</th>
-                <th> Description</th>
-                <th> Course start date</th>
-                <th> Course end date</th>
-                <th> <p> Participants </p></th>
-                <th> <p> Messages </p></th>
-            </tr>
-        {% for course in courses_list %}
-            <tr>
-                <th> {{ course.name }}</th>
-                <th> {{ course.description }}</th>
-                <th> {{ course.start_date }}</th>
-                <th> {{ course.end_date }}</th>
-                <th> <p> {{ students_attended_to_this_course }} </p></th>
-                <th> <p> Here write a message concerning this course:
-
-
-                </p></th>
-            </tr>
-        {% endfor %}
-    </table>
-
-
-
-    <a href="{% url 'teacher_module:teacher_profile_view' %}">Go back</a>
+    <h1> {{ username }} you are on {{ certain_course.name }} course page  </h1>
+    <h2> List of Participants:</h2>
+    <p>{% for student in students_attended %}
+            {{ student.username }}
+        {% endfor %}</p>
+    <p>
+    Message box
+    </p>
+    <a href="{% url 'teacher_module:courses_view' %}">Go back to all courses</a>
 {% endblock %}
 <body>
 </body>
