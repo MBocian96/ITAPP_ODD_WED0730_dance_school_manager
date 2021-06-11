@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'employee_module',
     'courses_module',
     'client_module',
+    'courses_module',
+    'teacher_module'
 ]
 
 MIDDLEWARE = [

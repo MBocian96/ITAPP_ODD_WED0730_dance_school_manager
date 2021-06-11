@@ -1,5 +1,6 @@
 from django.urls import path
 
+from teacher_module.views.create_message import  message_post_view
 from teacher_module.views.main_view import TeacherView
 from teacher_module.views.school_courses import SchoolCoursesViews
 from teacher_module.views.settings_view import SettingsViews
@@ -7,10 +8,7 @@ from teacher_module.views.view_courses import CoursesListViews
 from teacher_module.views.calendar import CalendarViews
 from teacher_module.views.course_page import CoursePageViews, CoursesViews
 
-app_name= "teacher_module"
-
-
-
+app_name = "teacher_module"
 
 urlpatterns = [
     path('', TeacherView.as_view(), name='teacher_profile_view'),
@@ -19,4 +17,7 @@ urlpatterns = [
     path('calendar/', CalendarViews.as_view(), name='calendar_view'),
     path('courses/', CoursesViews.as_view(), name='courses_view'),
     path('certain_course/<int:course_id>/', CoursePageViews.as_view(), name='course_page_view'),
+    path('certain_course/create_message/', message_post_view, name='create_message_view'),
+   # path('certain_course/<int:pk>/', CoursePageViews.as_view(), name='course_page_view'),
+   # path('certain_course/<int:course_id>/create_message/', message_post_view, name='create_message_view')
 ]
