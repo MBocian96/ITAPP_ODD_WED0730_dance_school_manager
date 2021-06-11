@@ -25,9 +25,14 @@ class Courses(models.Model):
         return end_date.time()
 
     def is_ongoing(self, time_delta: timedelta = timedelta(minutes=0)):
-        current_time: time = timezone.now() + time_delta
+        # current_time: time = timezone.now() + time_delta
+        current_time: time = datetime.now() + time_delta
         if self.start_date <= current_time.date() < self.end_date:
             if int(self.days) == current_time.weekday():
+                course_date = self.time.strftime(HOUR_FORMAT)
+                now = current_time.time().strftime(
+                    HOUR_FORMAT)
+                course_end_time = self.lesson_end.strftime(HOUR_FORMAT)
                 if self.time.strftime(HOUR_FORMAT) <= current_time.time().strftime(
                         HOUR_FORMAT) < self.lesson_end.strftime(HOUR_FORMAT):
                     return True

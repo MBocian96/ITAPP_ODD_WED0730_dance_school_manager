@@ -1,12 +1,12 @@
 from django.contrib.auth.decorators import login_required
-from django.http import request
+from django.http import request, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import View, generic
 from django.views.generic import CreateView, DeleteView, UpdateView
 from django.contrib.auth.forms import UserChangeForm
-from authentication_module.forms import EditProfileForm
+from authentication_module.forms import EditProfileForm, ReportAbsenceForm
 from operator import attrgetter
 
 
@@ -39,7 +39,7 @@ class ClientSettingsView(UpdateView):
         return self.request.user
 
 
-# Client can leave course (deletes course from the database not just client's list, fuck)
+# Client can leave course
 def AbandonCourse(request, pk):
     user = request.user
     to_delete = user.courses.get(id=pk)
@@ -70,3 +70,17 @@ class CalendarView(CreateView):
         context = {'days': days, 'user': request.user}
 
         return render(request, self.template, context=context)
+
+class ReportAbsenceView(CreateView):
+    def get(self, request, *args, **kwargs):
+        form = ReportAbsenceForm
+        context = {'form': form}
+        return render(request, 'profiles/student/report_absence_view.html', context)
+
+    def post(self, request, *args, **kwargs):
+        form = ReportAbsenceForm(request.POST)
+        form.instance.related_student = request.user
+        if form.is_valid():
+            form.save()
+            return redirect("client_module:user_view")
+        return HttpResponse('blad')

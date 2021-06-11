@@ -3,6 +3,7 @@ from datetime import timedelta, datetime
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.http import HttpResponse
 
 from authentication_module.managers import UserManager
 from courses_module.models import Courses
@@ -13,6 +14,7 @@ TEACHER = 'teacher'
 STUDENT = 'student'
 UNKNOWN = 'unknown'
 
+#absence
 
 
 class CustomUser(AbstractBaseUser):
@@ -82,6 +84,12 @@ class CustomUser(AbstractBaseUser):
                 current_courses.append(course)
         return current_courses
 
+    def get_reported_absences(self):
+        reported_absences = ReportedAbsences.objects.filter(related_student__id=self.id)
+        result = [absence.related_course for absence in reported_absences]
+        return result
+
+
 
 class MissedCourse(models.Model):
     date = models.DateField()
@@ -100,6 +108,15 @@ def set_absence_for_ongoing_courses(request):
     for course in Courses.objects.all():
         if course.is_ongoing(timedelta(minutes=+15)):
             for student in CustomUser.objects.filter(courses__id=course.id):
+
                 from django.utils import timezone
                 m = MissedCourse(date=timezone.now().date(), related_student=student, related_course=course)
                 m.save()
+    return HttpResponse(str(datetime.date()))
+
+class ReportedAbsences(models.Model):
+    date = models.DateField()
+    related_course = models.ForeignKey(Courses, on_delete=models.CASCADE, unique=False)
+    related_student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, unique=False)
+
+

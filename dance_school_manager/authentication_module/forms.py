@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.db import transaction
 
-from authentication_module.models import CustomUser
+from authentication_module.models import CustomUser, ReportedAbsences
 
 
 class StudentSignUpForm(UserCreationForm):
@@ -24,3 +24,8 @@ class EditProfileForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = ('username', 'email')
+
+class ReportAbsenceForm(forms.ModelForm):
+    class Meta:
+        model = ReportedAbsences
+        exclude = ['related_student',]

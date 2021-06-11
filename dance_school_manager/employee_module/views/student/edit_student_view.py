@@ -48,8 +48,15 @@ def get_marked_as_present(ongoing, absences):
 
 
 def substract_deposit(student):  # run 15min before course end
-    ongoing_courses = student.get_ongoing_courses(timedelta(minutes=0))
-    absences = student.get_aboslut_absences()
+    ongoing_courses = student.get_ongoing_courses(timedelta(minutes=0)) #list of objects course
+    absences = student.get_aboslut_absences() #list of objects course
+    reported_absences = student.get_reported_absences() #list of reported absences
+
     for course in ongoing_courses:
         if course in absences:
-            student.deposit -= 15
+            for absence in reported_absences:
+                if course == absence:
+                    reported_absences.pop(absence)
+                    continue
+                else:
+                    student.deposit -= 15
