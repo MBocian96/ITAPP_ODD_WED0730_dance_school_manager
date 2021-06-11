@@ -33,17 +33,19 @@ from teacher_module.forms.create_message_form import CreateMessageForm
 
 def message_post_view(request):
     #userlist = CustomUser.objects.values('username').distinct().order_by('username')
-    form = CreateMessageForm(request.POST or None)
+    form = CreateMessageForm(request.POST)
     if request.method == "POST":
+        related_course = form.cleaned_data.get("related_course")
         if form.is_valid():
             form.save()
-       # return HttpResponseRedirect("/teacher/certain_course.html")
-       # return HttpResponseRedirect("/teacher/courses.html")
-        return redirect("teacher_module:course_page_view")
+        # return HttpResponseRedirect       ("/teacher/certain_course.html")
+        # return HttpResponseRedirect("/teacher/courses.html")
+        return redirect("teacher_module:course_page_view", course_id=related_course.id)
 
     context = {'form': form,
               # 'userlist':userlist
                }
+
 
     return render(request, 'profiles/teacher/create_message.html', context)
 
