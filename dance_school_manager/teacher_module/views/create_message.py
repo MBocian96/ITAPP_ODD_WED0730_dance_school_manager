@@ -57,15 +57,19 @@ class MessagePostView(CreateView):
 
     def post(self, request, *args, **kwargs):
        # certain_course = Courses.objects.get(id=course_id)
-        form = CreateMessageForm(request.POST or None)
-        form.instance.user = request.user
-        if request.method == "POST":
-
+    form = CreateMessageForm(request.POST)
+        form.instance.user = request.userif request.method == "POST":
+        related_course = form.cleaned_data.get("related_course")
             if form.is_valid():
                 related_course = form.cleaned_data.get("related_course")
-                form.save()
-           # return HttpResponseRedirect("/teacher/certain_course.html")
-           # return HttpResponseRedirect("/teacher/courses.html")
-                return redirect("teacher_module:course_page_view", course_id=related_course.id)
+            form.save()
+        # return HttpResponseRedirect       ("/teacher/certain_course.html")
+        # return HttpResponseRedirect("/teacher/courses.html")
+        return redirect("teacher_module:course_page_view", course_id=related_course.id)
 
+    context = {'form': form,
+              # 'userlist':userlist
+               }
+
+    return render(request, 'profiles/teacher/create_message.html', context)
 
