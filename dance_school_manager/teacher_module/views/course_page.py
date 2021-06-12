@@ -9,7 +9,6 @@ from django.views.generic import CreateView
 
 from authentication_module.models import CustomUser
 from courses_module.models import Courses
-from teacher_module.forms.create_message_form import CreateMessageForm
 from teacher_module.models import Message
 
 
@@ -20,9 +19,7 @@ class CoursesViews(CreateView):
     def get(self, request, *args, **kwargs):
         context = {'username': request.user.username,
                    'courses_list': request.user.courses.all()
-
                    }
-
         return render(request, self.template_name, context=context)
 
 
@@ -36,12 +33,10 @@ class CoursePageViews(CreateView):
 
         certain_course = Courses.objects.get(id=course_id)
 
-        # filtrowanie wiadomosci przypisane tylko do tego kursu
+        # filter messages assignet to certain course
         messages_assigned_to_this_course: QuerySet = Message.objects.filter(related_course=course_id)
 
-        #        messages_list = Message.objects.all()
-        #  @method_decorator(login_required)
-        # def get(self, request, *args, **kwargs):
+
 
         context = {'username': request.user.username,
                    'courses_list': request.user.courses.all(),
