@@ -17,8 +17,5 @@ urlpatterns = [
     path('calendar/', CalendarViews.as_view(), name='calendar_view'),
     path('courses/', CoursesViews.as_view(), name='courses_view'),
     path('certain_course/<int:course_id>/', CoursePageViews.as_view(), name='course_page_view'),
-    # path('certain_course/create_message/', message_post_view, name='create_message_view'),
-    # path('certain_course/<int:pk>/', CoursePageViews.as_view(), name='course_page_view'),
-    # path('certain_course/<int:course_id>/create_message/', message_post_view, name='create_message_view')
     path('certain_course/create_message/', MessagePostView.as_view(), name='create_message_view')
 ]
