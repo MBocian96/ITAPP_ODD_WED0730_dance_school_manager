@@ -4,6 +4,7 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.http import HttpResponse
+from django.utils import timezone
 
 from authentication_module.managers import UserManager
 from courses_module.models import Courses
@@ -108,10 +109,14 @@ def set_absence_for_ongoing_courses(request):
     for course in Courses.objects.all():
         if course.is_ongoing(timedelta(minutes=+15)):
             for student in CustomUser.objects.filter(courses__id=course.id):
-
-                from django.utils import timezone
-                m = MissedCourse(date=timezone.now().date(), related_student=student, related_course=course)
-                m.save()
+                for absence in student.get_reported_absences():
+                    if absence == course:
+                        ReportedAbsences.objects.delete(absence)
+                        continue
+                    else:
+                         #here was a strange timezone import
+                        m = MissedCourse(date=timezone.now().date(), related_student=student, related_course=course)
+                        m.save()
     return HttpResponse(str(datetime.date()))
 
 class ReportedAbsences(models.Model):

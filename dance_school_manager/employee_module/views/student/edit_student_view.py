@@ -54,9 +54,4 @@ def substract_deposit(student):  # run 15min before course end
 
     for course in ongoing_courses:
         if course in absences:
-            for absence in reported_absences:
-                if course == absence:
-                    reported_absences.pop(absence)
-                    continue
-                else:
-                    student.deposit -= 15
+            student.deposit -= 15
