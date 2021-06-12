@@ -8,7 +8,8 @@ from teacher_module.models import Message
 class CreateMessageForm(forms.ModelForm):
     class Meta:
         model = Message
-        fields = ["title", "text", "user", "related_course"]
+       # fields = ["title", "text", "user", "related_course"]
+        exclude = ["user"]
 
 # class CreateMessageForm(forms.ModelForm):
 #        fields = ["title", "text", "user", "related_course"]
