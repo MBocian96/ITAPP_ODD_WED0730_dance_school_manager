@@ -135,6 +135,7 @@ DAYS_OF_WEEK = (
     ('6', 'Sunday'),
 )
 USE_TZ = True
+TIME_ZONE = 'Europe/Warsaw'
 LOGOUT_REDIRECT_URL = '/authentication/login/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
