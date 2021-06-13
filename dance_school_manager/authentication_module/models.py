@@ -102,21 +102,18 @@ class MissedCourse(models.Model):
         return datetime.strptime(str(self.date), '%Y-%m-%d')
 
 
-def set_absence_for_ongoing_courses():
+def set_absence_for_ongoing_courses(request=None):
     for course in Courses.objects.all():
         if course.is_ongoing(timedelta(minutes=+15)):
             for student in CustomUser.objects.filter(courses__id=course.id):
-                m = MissedCourse(date=datetime.now().date(), related_student=student, related_course=course)
-                m.save()
                 for absence in student.get_reported_absences():
                     if absence.related_course == course:
                         to_delete = ReportedAbsences.objects.filter(id=absence.id)
                         to_delete.delete()
                         continue
-                    else:
-                        m = MissedCourse(date=timezone.now().date(), related_student=student, related_course=course)
-                        m.save()
-    return HttpResponse(str(datetime.date()))
+                else:
+                    m = MissedCourse(date=timezone.now().date(), related_student=student, related_course=course)
+                    m.save()
 
 
 class ReportedAbsences(models.Model):

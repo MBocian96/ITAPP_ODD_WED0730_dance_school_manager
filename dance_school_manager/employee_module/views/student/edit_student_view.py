@@ -44,7 +44,7 @@ def get_marked_as_present(ongoing, absences):
     return result
 
 
-def substract_deposit():
+def substract_deposit(request=None):
     all_students = CustomUser.objects.filter(is_student=True)
     for student in all_students:
         ongoing_courses = student.get_ongoing_courses(timedelta(minutes=0))
@@ -53,6 +53,8 @@ def substract_deposit():
             if course in absences:
                 if student.deposit > 0:
                     student.deposit -= 15
+                    student.save()
+
 
 def remove_course_from_student(course_name, student_id):
     if course_name != "None":

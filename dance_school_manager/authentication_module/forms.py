@@ -19,13 +19,14 @@ class StudentSignUpForm(UserCreationForm):
         user.save()
         return user
 
-class EditProfileForm(UserChangeForm):
 
+class EditProfileForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = ('username', 'email')
 
+
 class ReportAbsenceForm(forms.ModelForm):
     class Meta:
         model = ReportedAbsences
-        exclude = ['related_student',]
+        exclude = ['related_student', ]

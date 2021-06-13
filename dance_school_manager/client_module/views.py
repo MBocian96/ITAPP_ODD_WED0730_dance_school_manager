@@ -10,7 +10,6 @@ from authentication_module.forms import EditProfileForm, ReportAbsenceForm
 from operator import attrgetter
 
 
-
 # Create your views here.
 
 
@@ -62,14 +61,16 @@ class CalendarView(CreateView):
                 ('Tuesday', [course for course in courses_list if course.days == '1']),
                 ('Wednesday', [course for course in courses_list if course.days == '2']),
                 ('Thursday', [course for course in courses_list if course.days == '3']),
-                ('Friday', [course for course in courses_list if course.days == '4'])
+                ('Friday', [course for course in courses_list if course.days == '4']),
+                ('Saturday', [course for course in courses_list if course.days == '5']),
+                ('Sunday', [course for course in courses_list if course.days == '6']),
                 ]
         for day in days:
             day[1].sort(key=attrgetter('start_date'))
-
         context = {'days': days, 'user': request.user}
 
         return render(request, self.template, context=context)
+
 
 class ReportAbsenceView(CreateView):
     def get(self, request, *args, **kwargs):
