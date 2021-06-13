@@ -1,8 +1,7 @@
-from datetime import timedelta
+from datetime import timedelta, datetime
 from typing import List
 
 from django.shortcuts import get_object_or_404, redirect
-from django.utils import timezone
 
 from authentication_module.models import CustomUser, MissedCourse
 from courses_module.models import Courses
@@ -20,7 +19,7 @@ class EditStudentView(EditUserView):
         absences_to_show: List[Courses] = student.get_absences()
         ongoing_courses = student.get_ongoing_courses(timedelta(minutes=15))
         marked_as_present = get_marked_as_present(ongoing_courses, student.get_aboslut_absences())
-        date = timezone.now().date()
+        date = datetime.now().date()
         additional_context = {'ongoing_courses': ongoing_courses,
                               'deposit': student.deposit,
                               'student': student,

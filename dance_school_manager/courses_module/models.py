@@ -2,7 +2,6 @@ from datetime import timedelta, date, datetime
 from time import time
 
 from django.db import models
-from django.utils import timezone
 
 from dance_school_manager.settings import HOUR_FORMAT, DAYS_OF_WEEK
 
@@ -11,10 +10,10 @@ class Courses(models.Model):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=100)
     room = models.IntegerField(default=0)
-    start_date = models.DateField(default=timezone.now().date())
+    start_date = models.DateField(default=datetime.now().date())
     days = models.CharField(choices=DAYS_OF_WEEK, default='Monday', max_length=70)
-    time = models.TimeField(default=timezone.now().time())
-    end_date = models.DateField(default=timezone.now().date() + timedelta(weeks=8))
+    time = models.TimeField(default=datetime.now().time())
+    end_date = models.DateField(default=datetime.now().date() + timedelta(weeks=8))
 
     def __str__(self):
         return f'Course {self.name}: {self.description}'
@@ -25,6 +24,7 @@ class Courses(models.Model):
         return end_date.time()
 
     def is_ongoing(self, time_delta: timedelta = timedelta(minutes=0)):
+        current_time: time = datetime.now() + time_delta + timedelta(hours=2)
         # current_time: time = timezone.now() + time_delta
         current_time: time = datetime.now() + time_delta
         if self.start_date <= current_time.date() < self.end_date:
