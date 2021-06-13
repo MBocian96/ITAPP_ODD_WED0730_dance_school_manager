@@ -93,6 +93,7 @@ class MissedCourse(models.Model):
     date = models.DateField()
     related_student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, unique=False)
     related_course = models.ForeignKey(Courses, on_delete=models.CASCADE, unique=False)
+    is_deposit_substracted = models.BooleanField(default=False)
 
     def __str__(self):
         return f'MissedCourse: {self.date}, {self.related_course}'

@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect
 
 from authentication_module.models import CustomUser, MissedCourse
 from courses_module.models import Courses
+from dance_school_manager.settings import MISSED_COURSE_PENALTY
 from employee_module.forms.student.create_student_form import CreateStudentForm
 from employee_module.views.base.edit_user_view import EditUserView
 
@@ -47,12 +48,10 @@ def get_marked_as_present(ongoing, absences):
 def substract_deposit(request=None):
     all_students = CustomUser.objects.filter(is_student=True)
     for student in all_students:
-        ongoing_courses = student.get_ongoing_courses(timedelta(minutes=0))
-        absences = student.get_aboslut_absences()
-        for course in ongoing_courses:
-            if course in absences:
+        for missed_course in MissedCourse.objects.filter(related_student__id=student.id):
+            if not missed_course.is_deposit_substracted:
                 if student.deposit > 0:
-                    student.deposit -= 15
+                    student.deposit -= MISSED_COURSE_PENALTY
                     student.save()
 
 

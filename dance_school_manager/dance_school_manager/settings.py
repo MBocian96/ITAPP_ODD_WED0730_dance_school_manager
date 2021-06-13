@@ -140,3 +140,4 @@ LOGOUT_REDIRECT_URL = '/authentication/login/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+MISSED_COURSE_PENALTY = 10
