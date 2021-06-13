@@ -112,7 +112,8 @@ def set_absence_for_ongoing_courses(request):
             for student in CustomUser.objects.filter(courses__id=course.id):
                 for absence in student.get_reported_absences():
                     if absence.related_course == course:
-                        ReportedAbsences.objects.delete(absence)
+                        to_delete = ReportedAbsences.objects.filter(id=absence.id)
+                        to_delete.delete()
                         continue
                     else:
                          #here was a strange timezone import
