@@ -15,8 +15,6 @@ TEACHER = 'teacher'
 STUDENT = 'student'
 UNKNOWN = 'unknown'
 
-#absence
-
 
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
@@ -29,7 +27,6 @@ class CustomUser(AbstractBaseUser):
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
 
     deposit = models.IntegerField(verbose_name="deposit of monet", default=50)
-
 
     is_admin = models.BooleanField(default=False)
     is_employee = models.BooleanField(default=False)
@@ -92,7 +89,6 @@ class CustomUser(AbstractBaseUser):
         return reported_absences
 
 
-
 class MissedCourse(models.Model):
     date = models.DateField()
     related_student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, unique=False)
@@ -122,9 +118,8 @@ def set_absence_for_ongoing_courses():
                         m.save()
     return HttpResponse(str(datetime.date()))
 
+
 class ReportedAbsences(models.Model):
     date = models.DateField()
     related_course = models.ForeignKey(Courses, on_delete=models.CASCADE, unique=False)
     related_student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, unique=False)
-
-
