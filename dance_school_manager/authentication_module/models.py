@@ -116,7 +116,6 @@ def set_absence_for_ongoing_courses(request):
                         to_delete.delete()
                         continue
                     else:
-                         #here was a strange timezone import
                         m = MissedCourse(date=timezone.now().date(), related_student=student, related_course=course)
                         m.save()
     return HttpResponse(str(datetime.date()))
