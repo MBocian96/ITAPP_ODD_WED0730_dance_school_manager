@@ -106,7 +106,7 @@ class MissedCourse(models.Model):
         return datetime.strptime(str(self.date), '%Y-%m-%d')
 
 
-def set_absence_for_ongoing_courses(request):
+def set_absence_for_ongoing_courses():
     for course in Courses.objects.all():
         if course.is_ongoing(timedelta(minutes=+15)):
             for student in CustomUser.objects.filter(courses__id=course.id):

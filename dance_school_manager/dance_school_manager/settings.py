@@ -134,9 +134,6 @@ DAYS_OF_WEEK = (
     ('5', 'Saturday'),
     ('6', 'Sunday'),
 )
-CRON_CLASSES = [
-    'dance_school_manager.cron.AbsanceCron'
-]
 USE_TZ = True
 LOGOUT_REDIRECT_URL = '/authentication/login/'
 STATICFILES_DIRS = (
