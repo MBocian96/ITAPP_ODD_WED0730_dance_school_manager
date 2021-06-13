@@ -87,8 +87,7 @@ class CustomUser(AbstractBaseUser):
 
     def get_reported_absences(self):
         reported_absences = ReportedAbsences.objects.filter(related_student__id=self.id)
-        result = [absence.related_course for absence in reported_absences]
-        return result
+        return reported_absences
 
 
 
@@ -110,7 +109,7 @@ def set_absence_for_ongoing_courses(request):
         if course.is_ongoing(timedelta(minutes=+15)):
             for student in CustomUser.objects.filter(courses__id=course.id):
                 for absence in student.get_reported_absences():
-                    if absence == course:
+                    if absence.related_course == course:
                         ReportedAbsences.objects.delete(absence)
                         continue
                     else:
