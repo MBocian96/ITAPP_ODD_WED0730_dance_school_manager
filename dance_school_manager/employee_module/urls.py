@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import path, register_converter
 
-from authentication_module.models import set_absence_for_ongoing_courses
 from employee_module import url_converter
 from employee_module.views.course.create_course_view import CreateCourseView
 from employee_module.views.course.edit_course_view import EditCourseView, remove_student_from_course
@@ -44,7 +43,6 @@ urlpatterns = [
          name='edit_student_view'),
 
     # mechanisms
-    path('set_absances/', set_absence_for_ongoing_courses, name='set_absance'),
     path('set_present/<date:date>/<int:user_id>/<int:course_id>/', set_present, name='set_present'),
     path('remove_from_course/<str:student_email>/<int:course_id>/', remove_student_from_course,
          name='remove_student_from_course'),
