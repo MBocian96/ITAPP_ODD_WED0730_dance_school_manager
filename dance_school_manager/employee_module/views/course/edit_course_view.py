@@ -12,7 +12,7 @@ class EditCourseView(ManageUserView):
 
     def get(self, request, course_id: int):
         course = get_object_or_404(Courses, id=course_id)
-        students_attended_to_this_course: QuerySet = CustomUser.objects.filter(courses__id=course_id)
+        students_attended_to_this_course: QuerySet = CustomUser.objects.filter(courses__id=course_id, is_student=True)
 
         course_form = CreateCourseForm(
             initial={'name': course.name,
