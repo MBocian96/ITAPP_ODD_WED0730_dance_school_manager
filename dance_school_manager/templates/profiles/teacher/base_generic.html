@@ -1,10 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  {% block title %}<title>Local Library</title>{% endblock %}
 </head>
 <body>
+    <div class="row">
+        <div class="col-md-8 col-sm-10 col-12">
+            {{ username }}
+            {% load static %}
+            <img src="{{ avatar }}" alt="profile avatar"/>
 
+                 Here should be a list of courses date and room taught by this teacher
+         <button
+                 nclick="location.href = location.href +'{{ courses_list }}'" type="button"> Courses List
+         </button>
+
+
+             <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Course Name</th>
+            <th scope="col">Course Date</th>
+            <th scope="col">description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for teacher in customUsers %}
+          <tr>
+            <td>{{ Course.name }}</td>
+            <td>{{ Course.date }}</td>
+            <td>{{ Course.description }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+            x
+            x
+            x
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-sm-10 col-12">
+          <!--  {{ username }} -->
+
+
+         <button
+                 nclick="location.href = location.href +'{{  school_courses }}'" type="button">  VIEW SCHOOL COURSES /
+         </button>
+pyt
+        </div>
+            <div class="row">
+        <div class="col-md-8 col-sm-10 col-12">
+          <!--  {{ username }} -->
+         <button
+                 nclick="location.href = location.href +'{{ settings }}'" type="button"> SETTINGS
+         </button>
+
+        </div>
+
+    </div>
+    </div>
+  {% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
+  {% block content %}<!-- default content text (typically empty) -->{% endblock %}
 </body>
 </html>

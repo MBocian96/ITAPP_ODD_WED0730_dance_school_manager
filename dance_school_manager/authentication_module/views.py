@@ -24,12 +24,16 @@ class StudentSignUpView(CreateView):
         return HttpResponse("Form is valid")
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/login/')
 def redirect_by_user_type(request):
     logged_user_type: CustomUser = request.user.get_user_type()
     user_type_views = {
         EMPLOYEE: 'employee',
         TEACHER: 'teacher',
-        STUDENT: 'student',
+        STUDENT: 'client',
     }
     return redirect(f'/{user_type_views[logged_user_type]}/')
+
+
+def redirect_to_login(request):
+    return redirect('authentication/login')

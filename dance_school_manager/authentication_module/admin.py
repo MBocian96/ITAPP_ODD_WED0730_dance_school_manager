@@ -3,7 +3,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from authentication_module.models import CustomUser
+from authentication_module.models import CustomUser, ReportedAbsences, MissedCourse
 
 
 class CustomUserAdmin(UserAdmin):
@@ -17,3 +17,4 @@ class CustomUserAdmin(UserAdmin):
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(ReportedAbsences)

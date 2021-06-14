@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication_module',
     'employee_module',
-    'courses_module'
+    'courses_module',
+    'client_module',
+    'teacher_module'
 ]
 
 MIDDLEWARE = [
@@ -119,5 +121,24 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'authentication_module.CustomUser'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-IMAGES_ROOT = os.path.join(MEDIA_ROOT, 'images')
+IMAGES_ROOT = 'media/'
 LOGIN_REDIRECT_URL = 'redirect_by_user_type/'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+HOUR_FORMAT = '%H:%M'
+DATE_FORMAT = '%Y-%M-%D'
+DAYS_OF_WEEK = (
+    ('0', 'Monday'),
+    ('1', 'Tuesday'),
+    ('2', 'Wednesday'),
+    ('3', 'Thursday'),
+    ('4', 'Friday'),
+    ('5', 'Saturday'),
+    ('6', 'Sunday'),
+)
+USE_TZ = True
+TIME_ZONE = 'Europe/Warsaw'
+LOGOUT_REDIRECT_URL = '/authentication/login/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+MISSED_COURSE_PENALTY = 10

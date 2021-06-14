@@ -1,0 +1,13 @@
+{% block content %}
+    <h1>Edit Profile Info</h1>
+    <br><br>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button class ="btn btn-secondary">Update</button>
+        </form>
+    </div>
+
+     <a href="{% url 'teacher_module:teacher_profile_view' %}">Go back</a>
+{% endblock %}

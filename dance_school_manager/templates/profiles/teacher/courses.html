@@ -1,0 +1,42 @@
+
+{% block content %}
+    {% load static %}
+    <img src="{{ avatar }}" alt="profile avatar"/>
+
+    <h1> {{ username }} here are your courses: </h1>
+
+    <table>
+     <tr>
+                <th> Name of the course</th>
+                <th> Description</th>
+                <th> Room</th>
+                <th> Course start date</th>
+                <th> Course end date</th>
+                <th> <p> Participants & Messages </p></th>
+
+            </tr>
+        {% for course in courses_list %}
+            <tr>
+                <th> {{ course.name }}</th>
+                <th> {{ course.description }}</th>
+                <th> {{ course.room }}</th>
+                <th> {{ course.start_date }}</th>
+                <th> {{ course.end_date }}</th>
+                <th>
+                <button>
+                    <a href="{% url 'teacher_module:course_page_view' course_id=course.id %}"> Check details</a>
+                </button>
+                </th>
+
+            </tr>
+        {% endfor %}
+    </table>
+                 <!--     {% for student in students_attended %}
+                    {{ student.username }}
+                    {% endfor %} -->
+
+
+    <a href="{% url 'teacher_module:teacher_profile_view' %}">Go back</a>
+{% endblock %}
+<body>
+</body>
