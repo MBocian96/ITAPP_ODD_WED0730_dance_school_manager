@@ -16,7 +16,7 @@ class MessagePostView(CreateView):
         form = CreateMessageForm(request.POST)
         form.instance.user = request.user
         if request.method == "POST":
-            related_course = form.cleaned_data.get("related_course")
+            
             if form.is_valid():
                 related_course = form.cleaned_data.get("related_course")
                 form.save()
