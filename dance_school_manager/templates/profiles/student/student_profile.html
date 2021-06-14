@@ -5,7 +5,7 @@
     <table>
         {% for course in courses_list %}
             <tr>
-                <th> {{ course.name }}</th>
+                <th> <a href="{% url 'client_module:course_page_view' course.id %}">{{ course.name }}</a></th>
                 <th> {{ course.description }}</th>
                 <th>
                     <a href="{% url 'client_module:abandon_course_view' pk=course.id %}">
