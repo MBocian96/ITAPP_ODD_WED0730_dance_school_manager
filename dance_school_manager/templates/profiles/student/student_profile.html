@@ -22,13 +22,26 @@
     {{ deposit }}
     <nav>
         {% load static %}
-        <a href="{% url 'client_module:user_settings_view' %}">EDIT PROFILE</a>
 
-        <a href="{% url 'client_module:calendar_view' %}">CALENDAR</a>
+        <button class="submit-btn" onclick="location.href = '{% url "client_module:user_settings_view" %}'"
+                type=" button">
+            EDIT PROFILE
+        </button>
 
-        <a href="{% url 'client_module:report_absence_view' %}">REPORT ABSENCE</a>
 
-        <a href="/authentication/logout">LOGOUT</a>
+        <button class="submit-btn" onclick="location.href = '{% url "client_module:calendar_view" %}'" type="button">
+            CALENDAR
+        </button>
+
+        <button class="submit-btn" onclick="location.href = '{% url "client_module:report_absence_view" %}'"
+                type="button">
+            REPORT ABSENCE
+        </button>
+
+        <button class="submit-btn" onclick="location.href = '/authentication/logout/'"
+                type="button">
+            LOGOUT
+        </button>
     </nav>
 
 {% endblock %}
