@@ -106,7 +106,7 @@ class MissedCourse(models.Model):
 def set_absence_for_ongoing_courses(request=None):
     for course in Courses.objects.all():
         if course.is_ongoing(timedelta(minutes=+15)):
-            for student in CustomUser.objects.filter(courses__id=course.id):
+            for student in CustomUser.objects.filter(courses__id=course.id, is_student=True):
                 for absence in student.get_reported_absences():
                     if absence.related_course == course:
                         to_delete = ReportedAbsences.objects.filter(id=absence.id)
