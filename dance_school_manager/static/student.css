@@ -79,9 +79,10 @@ body{
     text-align: center;
 }
 .right {
-    padding: 10px 0;
-    display: flex;
-    justify-content: flex-end;
+    position: absolute;
+    right: 10px;
+    margin-top: 2px;
+    border-radius: 5px;
 }
 .calendar{
     flex-direction: column;
@@ -92,12 +93,6 @@ body{
     max-width: 70%;
     margin-right: auto;
     margin-left: auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-.day{
-	flex-direction: row;
-	text-align: center;
 }
 .abandon {
     margin: auto;
@@ -110,10 +105,16 @@ body{
 .shadow {
     text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
 }
-.border {
+.big-border {
   border: 1px solid black;
   padding:0em 2em;
   border-collapse: collapse;
+  background: DarkSeaGreen;
+}
+.small-border {
+  border: 1px solid black;
+  border-collapse: collapse;
+  background: grey;
 }
 
 .submit-btn {
