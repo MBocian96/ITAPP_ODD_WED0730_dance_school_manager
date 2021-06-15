@@ -1,25 +1,6 @@
 {% extends 'profiles/teacher/base_generic.html' %}
 {% block content %}
 
-<!--
-<div class="calendar title">
-        {% for day in days %}
-            <h2 class="big-border">{{ day.0 }}</h2>
-            {% for course in day.1 %}
-                <table class="middle">
-                    <tr>
-                        <td> {{ course.name }}</td>
-                        <td> {{ course.start_date }}</td>
-                        <td> {{ course.end_date }}</td>
-                    </tr>
-                </table>
-            {% endfor %}
-        {% endfor %}
-</div>
--->
-
-
-
 <div class="calendar title">
     <h2 class="middle big-border">Monday</h2>
         {% if monday %}

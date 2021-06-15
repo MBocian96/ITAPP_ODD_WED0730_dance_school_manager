@@ -1,10 +1,8 @@
 body{
-	margin-top: 20px;
 	background-color: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
 	background-image: url('back_login.jpg');
 }
 .main{
-	padding: 15px;
 	font-family: Arial, Helvetica, sans-serif;
 }
 .topbar{
@@ -131,4 +129,29 @@ body{
 .submit-btn:hover{
     background: linear-gradient(to right, #ff105f, #ffad06);
     border-radius: 30px;
+}
+.coursepage-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+    padding: 10px;
+}
+
+.coursepage-child {
+    flex: 1;
+    border: 2px solid green;
+    background: whitesmoke;
+    justify-content: space-around;
+}
+
+.coursepage-child:first-child {
+    margin-right: 20px;
+}
+.hello{
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+    text-align: center;
+    background: whitesmoke;
 }
