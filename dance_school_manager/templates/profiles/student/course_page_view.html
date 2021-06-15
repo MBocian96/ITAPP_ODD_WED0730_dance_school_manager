@@ -42,29 +42,4 @@
 <div class="button submit-btn">
     <a href="{% url 'client_module:user_view' %}">Go back</a>
 </div>
-
-<!--    <h1> {{ username }} you are on {{ certain_course.name }} course page  </h1>-->
-<!--    <h2> List of Participants:</h2>-->
-<!--    <p>{% for student in students_attended %}-->
-<!--            {{ student.username }}-->
-<!--        {% endfor %}</p>-->
-<!--    <p>-->
-<!--    Message box-->
-<!--    </p>-->
-<!--    <table>-->
-<!--     <tr>-->
-<!--         <th> Title</th>-->
-<!--         <th> Message</th>-->
-<!--         <th> Date posted</th>-->
-<!--     </tr>-->
-<!--     {% for messages in messages_assigned_to_this_course %}-->
-<!--     <tr>-->
-<!--         <th> {{ messages.title }} </th>-->
-<!--         <th> {{ messages.text }} </th>-->
-<!--         <th> {{ messages.date_created }} </th>-->
-
-<!--     </tr>-->
-<!--    {% endfor %}-->
-<!--    </table>-->
-<!--    <a href="{% url 'client_module:user_view' %}">Main Page</a>-->
 {% endblock %}
