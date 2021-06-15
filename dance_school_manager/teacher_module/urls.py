@@ -3,6 +3,7 @@ from django.urls import path
 
 from employee_module.urls import login_url
 from teacher_module.views.calendar import CalendarViews
+from teacher_module.views.contact_view import contact_view
 from teacher_module.views.course_page import CoursePageViews, CoursesViews
 from teacher_module.views.create_message import MessagePostView
 from teacher_module.views.main_view import TeacherView
@@ -20,5 +21,6 @@ urlpatterns = [
     path('certain_course/<int:course_id>/', login_required(CoursePageViews.as_view(), login_url=login_url),
          name='course_page_view'),
     path('certain_course/create_message/', login_required(MessagePostView.as_view(), login_url=login_url),
-         name='create_message_view')
+         name='create_message_view'),
+    path('contacts/', contact_view, name='contact_view')
 ]
