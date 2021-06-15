@@ -8,7 +8,6 @@
             {% endfor %}
         {% endif %}
     </div>
-
     <div class="container">
         <form class="form_mc" method="post">
             {% csrf_token %}
@@ -46,7 +45,10 @@
                     <th>{{ course_form.0_student }}</th>
                     {% if course_form.0_student.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_student_from_course' course_form.0_student.value  course_id %}">X</a>
+                            <button>
+                                <a href="{% url 'employee_module:remove_student_from_course' course_form.0_student.value  course_id %}">
+                                    X </a>
+                            </button>
                         </td>
                     {% endif %}
                 </tr>
@@ -244,8 +246,15 @@
                     {% endif %}
                 </tr>
                 <tr>
-                    <th colspan="2"><input id="input_mc" type="submit" value="Submit"></th>
+                    <th colspan="1">
+                        <button id="input_an">
+                            <a href="{% url 'employee_module:manage_courses_view' %}" id="input_an">
+                                ANULUJ </a>
+                        </button>
+                    </th>
+                    <th colspan="1"><input id="input_mc" type="submit" value="SUBMIT"></th>
                 </tr>
+
             </table>
 
         </form>

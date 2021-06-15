@@ -63,10 +63,10 @@ class EditCourseView(ManageUserView):
             course.end_date = course_form.cleaned_data['end_date']
             course.days = course_form.cleaned_data['days']
             course.save()
-            local_context.update({'warrning': f'You created course {str(course)}'})
+            local_context.update({'warrning': f'You successfully edited course {str(course)}'})
             return render(request, self.template, local_context)
         else:
-            local_context.update({'warrning': 'Course can not be created'})
+            local_context.update({'warrning': str(course_form.errors)})
             return render(request, self.template, local_context)
 
     @classmethod

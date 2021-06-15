@@ -30,8 +30,11 @@
                     <th>{{ user_form.0_course }}</th>
                     {% if user_form.0_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.0_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.0_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -40,8 +43,13 @@
                     <th>{{ user_form.1_course }}</th>
                     {% if user_form.1_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.1_course.value  student.id %}">
-                                X </a>
+                            <button>
+                                {% url 'employee_module:remove_course_from_student' user_form.1_course.value  student_id as the_url %}
+                                {% if the_url %}
+                                    <a href="{{ the_url }}">
+                                        X </a>
+                                {% endif %}
+                            </button>
                         </td>
                     {% endif %}
                 </tr>
@@ -50,8 +58,11 @@
                     <th>{{ user_form.2_course }}</th>
                     {% if user_form.2_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.2_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.2_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -60,8 +71,11 @@
                     <th>{{ user_form.3_course }}</th>
                     {% if user_form.3_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.3_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.3_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -70,8 +84,11 @@
                     <th>{{ user_form.4_course }}</th>
                     {% if user_form.4_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.4_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.4_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -80,8 +97,11 @@
                     <th>{{ user_form.5_course }}</th>
                     {% if user_form.5_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.5_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.5_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -90,8 +110,11 @@
                     <th>{{ user_form.6_course }}</th>
                     {% if user_form.6_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.6_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.6_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
             <tr>
@@ -99,8 +122,11 @@
                     <th>{{ user_form.7_course }}</th>
                     {% if user_form.7_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.7_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.7_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -109,8 +135,11 @@
                     <th>{{ user_form.8_course }}</th>
                     {% if user_form.8_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.8_course.value  student.id %}">
-                               X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.8_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -121,8 +150,11 @@
                     <th>{{ user_form.9_course }}</th>
                     {% if user_form.9_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.9_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.9_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -131,8 +163,11 @@
                     <th>{{ user_form.10_course }}</th>
                     {% if user_form.10_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.10_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.10_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -141,8 +176,11 @@
                     <th>{{ user_form.11_course }}</th>
                     {% if user_form.11_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.11_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.11_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -151,8 +189,11 @@
                     <th>{{ user_form.12_course }}</th>
                     {% if user_form.12_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.12_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.12_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -161,8 +202,11 @@
                     <th>{{ user_form.13_course }}</th>
                     {% if user_form.13_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.13_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.13_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -171,8 +215,11 @@
                     <th>{{ user_form.14_course }}</th>
                     {% if user_form.14_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.14_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.14_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -181,8 +228,11 @@
                     <th>{{ user_form.15_course }}</th>
                     {% if user_form.15_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.15_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.15_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -191,8 +241,11 @@
                     <th>{{ user_form.16_course }}</th>
                     {% if user_form.16_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.16_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.16_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -201,8 +254,11 @@
                     <th>{{ user_form.17_course }}</th>
                     {% if user_form.17_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.17_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.17_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -211,8 +267,11 @@
                     <th>{{ user_form.18_course }}</th>
                     {% if user_form.18_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.18_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.18_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
@@ -221,13 +280,22 @@
                     <th>{{ user_form.19_course }}</th>
                     {% if user_form.19_course.value %}
                         <td>
-                            <a href="{% url 'employee_module:remove_course_from_student' user_form.19_course.value  student.id %}">
-                                X </a>
+                            {% url 'employee_module:remove_course_from_student' user_form.19_course.value  student_id as the_url %}
+                            {% if the_url %}
+                                <a href="{{ the_url }}">
+                                    X </a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <th colspan="2"><input id="input_mc" type="submit" value="Submit"></th>
+                    <th colspan="1">
+                        <button id="input_an">
+                            <a href="{% url 'employee_module:manage_students_view' %}" id="input_an">
+                                ANULUJ </a>
+                        </button>
+                    </th>
+                    <th colspan="1"><input id="input_mc" type="submit" value="Submit"></th>
                 </tr>
             </table>
         </form>
@@ -243,11 +311,11 @@
             <tr>
             <th>{{ course }}</th>
             {% if course in marked_as_present %}
-                <th><a href="{% url 'employee_module:set_present' date=date user_id=student.id course_id=course.id %}">
+                <th><a href="{% url 'employee_module:set_present' date=date user_id=student_id course_id=course.id %}">
                     &#x02713;</a></th>
                 </tr>
             {% else %}
-                <a href="{% url 'employee_module:set_present' date=date user_id=student.id course_id=course.id %}">
+                <a href="{% url 'employee_module:set_present' date=date user_id=student_id course_id=course.id %}">
                     &#x02713;</a>
             {% endif %}
         {% endfor %}
@@ -261,7 +329,7 @@
         {% for absence in absences %}
             <tr>
             <th>{{ absence }}</th>
-            <th><a href="{% url 'employee_module:set_present' date=absence.date_to_url user_id=student.id course_id=absence.related_course.id %}">
+            <th><a href="{% url 'employee_module:set_present' date=absence.date_to_url user_id=student_id course_id=absence.related_course.id %}">
                     &#x02713;
             </a></th>
             </tr>

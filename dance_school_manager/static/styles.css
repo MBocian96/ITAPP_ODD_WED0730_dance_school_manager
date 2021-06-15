@@ -20,6 +20,17 @@ nav{
     outline: none;
     font-size: 15px;
 }
+.username{
+    width: 20%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin:10px auto;
+    background-color: #ffad06;
+    border: 0;
+    outline: none;
+    font-size: 15px;
+}
 
 .submit-btn:hover{
     background: linear-gradient(to right, #ff105f, #ffad06);
@@ -261,6 +272,14 @@ select{
     font-weight: bold;
 }
 
+#input_an{
+    background-color: #ff061b;
+    border-bottom: 0;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+
 #input_mc:hover{
     background: linear-gradient(to right, #ff105f, #ffad06);
     cursor: pointer;
@@ -270,6 +289,11 @@ select{
     background-color: indianred;
     text-align: center;
     position: absolute;
+}
+
+.success_p{
+    background-color: chartreuse;
+    text-align: center;
 }
 
 .info p{
