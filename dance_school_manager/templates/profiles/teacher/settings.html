@@ -9,9 +9,9 @@ body {
 
 
 <div class="course centered">
-	<div class="title">
+	<div>
 		<h3>Input your new data</h3>
-		<div class="flexbox-item flexbox-item-1">
+		<div>
             <form method="POST">
                 {% csrf_token %}
                 {{ form.as_p}}

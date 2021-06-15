@@ -3,12 +3,12 @@ body{
 	background-image: url('back_login.jpg');
 }
 .main{
-    margin-top: 15px;
 	font-family: Arial, Helvetica, sans-serif;
 }
 .topbar{
 	background-color: orange;
 	overflow: hidden;
+	margin-bottom: 3%;
 }
 .topbar a{
 	float: right;
@@ -21,7 +21,8 @@ body{
 .sidebar{
 	background-color: #333;
 	color: white;
-	height: 100%;
+	height: 389px;
+	margin-bottom: 5%;
 }
 .sidebar a{
 	margin-left: 10px;
@@ -46,7 +47,7 @@ body{
 	margin: auto;
 	width: 50%;
 	padding: 10px;
-	border: 3px solid green;
+	border: 3px solid orange;
     align-content: space-between;
 }
 .name{
@@ -85,19 +86,19 @@ body{
 }
 .calendar{
     flex-direction: column;
-	border: 3px solid green;
+	border: 3px solid orange;
 	background-color: whitesmoke;
-	align-items: center;
-    justify-content: center;
     max-width: 70%;
+    width:900px;
     margin-right: auto;
     margin-left: auto;
     margin-top: 10%;
+    text-align: center;
 }
 .abandon {
     margin: auto;
     width: 50%;
-    border: 3px solid green;
+    border: 3px solid orange;
     padding: 10px;
     text-align: center;
     background: whitesmoke;
@@ -109,7 +110,7 @@ body{
   border: 1px solid black;
   padding:0em 2em;
   border-collapse: collapse;
-  background: DarkSeaGreen;
+  background: orange;
 }
 .small-border {
   border: 1px solid black;
@@ -141,7 +142,7 @@ body{
 
 .coursepage-child {
     flex: 1;
-    border: 2px solid green;
+    border: 2px solid orange;
     background: whitesmoke;
     justify-content: space-around;
 }
@@ -152,7 +153,7 @@ body{
 .hello{
     margin: auto;
     width: 50%;
-    border: 3px solid green;
+    border: 3px solid orange;
     padding: 10px;
     text-align: center;
     background: whitesmoke;
@@ -187,4 +188,8 @@ body{
     outline: none;
     font-size: 15px;
     text-decoration: none;
+}
+
+.table1 th{
+width:300px;
 }

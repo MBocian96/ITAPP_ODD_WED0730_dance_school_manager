@@ -86,7 +86,7 @@
                 <th> Course start date</th>
                 <th> Course end date</th>
                 <th> Course page</th>
-                <th> <p> Abandon Course </p></th>
+                <th> Abandon Course </th>
 
             </tr>
         {% for course in courses_list %}
@@ -96,9 +96,9 @@
                 <td> {{ course.start_date }}</td>
                 <td> {{ course.end_date }}</td>
                 <td>
-                <button>
-                    <a href="{% url 'client_module:course_page_view' course_id=course.id %}"> Check details</a>
-                </button>
+                    <button>
+                        <a href="{% url 'client_module:course_page_view' course_id=course.id %}"> Check details</a>
+                    </button>
                 </td>
                 <td>
                     <a href="{% url 'client_module:abandon_course_view' pk=course.id %}">

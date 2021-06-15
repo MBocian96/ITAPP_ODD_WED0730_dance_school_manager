@@ -2,14 +2,22 @@
 {% block content %}
 
 <div class="calendar title">
-    <h2 class="middle big-border">Monday</h2>
+    <table  class="table1" style="width:100%">
+        <h2 class="big-border"></h2>
+                    <tr>
+                        <th> Course Name</th>
+                        <th> Course Room</th>
+                        <th> Course Time</th>
+                    </tr>
+                </table >
+    <h2 class="big-border">Monday</h2>
         {% if monday %}
             {% for course in monday %}
-                <table  class="title" style="width:100%">
+                <table class="table1" style="width:100%">
                     <tr>
-                        <td> {{ course.name }}</td>
-                        <td> {{ course.start_date }}</td>
-                        <td> {{ course.end_date }}</td>
+                        <th> {{ course.name }}</th>
+                        <th> {{ course.room }}</th>
+                        <th> {{ course.time }}</th>
                     </tr>
                 </table>
             {% endfor %}
@@ -17,11 +25,11 @@
     <h2 class="big-border">Tuesday</h2>
         {% if tuesday %}
             {% for course in tuesday %}
-                <table  class="title" style="width:100%">
+                <table class="table1" style="width:100%">
                     <tr>
-                        <td> {{ course.name }}</td>
-                        <td> {{ course.start_date }}</td>
-                        <td> {{ course.end_date }}</td>
+                        <th> {{ course.name }}</th>
+                        <th> {{ course.room }}</th>
+                        <th> {{ course.time }}</th>
                     </tr>
                 </table>
             {% endfor %}
@@ -29,11 +37,11 @@
     <h2 class="big-border">Wednesday</h2>
         {% if wednesday %}
             {% for course in wednesday %}
-                <table  class="title" style="width:100%">
+                <table class="table1" style="width:100%">
                     <tr>
-                        <td> {{ course.name }}</td>
-                        <td> {{ course.start_date }}</td>
-                        <td> {{ course.end_date }}</td>
+                        <th> {{ course.name }}</th>
+                        <th> {{ course.room }}</th>
+                        <th> {{ course.time }}</th>
                     </tr>
                 </table>
             {% endfor %}
@@ -41,11 +49,11 @@
     <h2 class="big-border">Thursday</h2>
         {% if thursday %}
             {% for course in thursday %}
-                <table  class="title" style="width:100%">
+                <table class="table1" style="width:100%">
                     <tr>
-                        <td> {{ course.name }}</td>
-                        <td> {{ course.start_date }}</td>
-                        <td> {{ course.end_date }}</td>
+                        <th> {{ course.name }}</th>
+                        <th> {{ course.room }}</th>
+                        <th> {{ course.time }}</th>
                     </tr>
                 </table>
             {% endfor %}
@@ -53,11 +61,11 @@
     <h2 class="big-border">Friday</h2>
         {% if friday %}
             {% for course in friday %}
-                <table  class="title" style="width:100%">
+                <table class="table1" style="width:100%">
                     <tr>
-                        <td> {{ course.name }}</td>
-                        <td> {{ course.start_date }}</td>
-                        <td> {{ course.end_date }}</td>
+                        <th> {{ course.name }}</th>
+                        <th> {{ course.room }}</th>
+                        <th> {{ course.time }}</th>
                     </tr>
                 </table>
             {% endfor %}
@@ -66,4 +74,5 @@
 <div class="button submit-btn">
     <a href="{% url 'teacher_module:teacher_profile_view' %}">Go back</a>
 </div>
+
 {% endblock %}
