@@ -5,7 +5,7 @@
         {% for day in days %}
             <h2 class="big-border">{{ day.0 }}</h2>
             {% for course in day.1 %}
-                <table class="middle">
+                <table class="title" style="width:100%">
                     <tr>
                         <td> {{ course.name }}</td>
                         <td> {{ course.start_date }}</td>
