@@ -12,6 +12,7 @@
       <input class="input-field" type="password" name="password" autocomplete="current-password" required="" placeholder="Password">
       <button type="submit" class="submit-btn">Log in</button>
       <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
       <input type="hidden" name="next" value="{{ next }}" />
   </form>
     {% if form.errors %}
