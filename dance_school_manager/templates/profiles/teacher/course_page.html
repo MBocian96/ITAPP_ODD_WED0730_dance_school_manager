@@ -1,55 +1,52 @@
 {% extends 'profiles/teacher/base_generic.html' %}
 {% block content %}
-<!--
-<div id="box1" class="box">
-    <div class="box-top">
-    </div>
-    <div class="box-middle">
-        <p> Test </p>
-        <p> Test </p>
-    </div>
-    <div class="box-bottom">
-    </div>
+
+<div class="hello">
+    <h2> Welcome {{ username }} to the "{{ certain_course.name }}" course page! </h2>
 </div>
-<div id="box2" class="box">
-    <div class="box-top">
-    </div>
-    <div class="box-middle">
-        <p> Test </p>
-        <p> Test </p>
-    </div>
-    <div class="box-bottom">
-    </div>
-</div>
--->
-    <h1> {{ username }} you are on {{ certain_course.name }} course page  </h1>
-    <h2> List of Participants:</h2>
-    <p>{% for student in students_attended %}
-            {{ student.username }}
-        {% endfor %}</p>
-    <p>
-    Message box
-    </p>
-    <table>
+<div class="coursepage-container">
+  <div class="coursepage-child left">
+    <h2 class="title"> List of Participants</h2>
+    <table class="title" style="width:100%">
+            <tr>
+                <th> Participant Name:</th>
+                <th> Participant Email:</th>
+            </tr>
+        {% for student in students_attended %}
+            <tr>
+                <td> {{ student.username }}</td>
+                <td> {{ student.email }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+  </div>
+  <div class="coursepage-child right">
+    <h2 class="title"> Message box</h2>
+    <table class="title" style="width:100%">
      <tr>
-         <th> Title</th>
-         <th> Message</th>
-         <th> Date posted</th>
+         <th> Title:</th>
+         <th> Message:</th>
+         <th> Date posted:</th>
      </tr>
      {% for messages in messages_assigned_to_this_course %}
      <tr>
-         <th> {{ messages.title }} </th>
-         <th> {{ messages.text }} </th>
-         <th> {{ messages.date_created }} </th>
+         <td> {{ messages.title }} </td>
+         <td> {{ messages.text }} </td>
+         <td> {{ messages.date_created }} </td>
 
      </tr>
     {% endfor %}
     </table>
+  </div>
+</div>
+<div>
      <p>
-         <button>
-             <a href="{% url 'teacher_module:create_message_view' %}"> Create message </a>
+         <button class="submit-btn">
+             <a href="{% url 'teacher_module:create_message_view' %}"> Write a message </a>
          </button>
     </p>
-    <a href="{% url 'teacher_module:courses_view' %}">Go back to all courses</a>
-
+</div>
+<div class="button submit-btn">
+    <a href="{% url 'teacher_module:courses_view' %}">Go back</a>
+</div>
 {% endblock %}
