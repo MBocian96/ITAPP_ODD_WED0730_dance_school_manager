@@ -65,7 +65,7 @@ nav{
     background-size: cover;
     display: block;
     position: absolute;
-    margin-top: 650px;
+    margin-top: 790px;
 }
 
 .home_h1{
@@ -353,6 +353,11 @@ button a{
 
 .table_mc2 td a:hover{
     background-color: rgba(220, 220, 220, 0.2);
+}
+
+img{
+    height: 30px;
+    width: 40px;
 }
 
 
