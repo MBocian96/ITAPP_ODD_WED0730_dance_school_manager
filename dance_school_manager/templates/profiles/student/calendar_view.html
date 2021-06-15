@@ -1,17 +1,22 @@
-<h1>{{ user.username }}</h1>
+{% extends 'profiles/student/base_generic.html' %}
 {% block content %}
-    {% for day in days %}
-        <h2>{{ day.0 }}</h2>
-        {% for course in day.1 %}
-            <table>
-                <tr>
-                    <th> {{ course.name }}</th>
-                    <th> {{ course.start_date }}</th>
-                    <th> {{ course.end_date }}</th>
-                </tr>
-            </table>
+
+<div class="calendar title">
+        {% for day in days %}
+            <h2 class="big-border">{{ day.0 }}</h2>
+            {% for course in day.1 %}
+                <table class="title" style="width:100%">
+                    <tr>
+                        <td> {{ course.name }}</td>
+                        <td> {{ course.start_date }}</td>
+                        <td> {{ course.end_date }}</td>
+                    </tr>
+                </table>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
-    <a href="{% url 'client_module:user_view' %}">Main Page</a>
+</div>
+<div class="button submit-btn">
+    <a href="{% url 'client_module:user_view' %}">Go Back</a>
+</div>
 {% endblock %}
 

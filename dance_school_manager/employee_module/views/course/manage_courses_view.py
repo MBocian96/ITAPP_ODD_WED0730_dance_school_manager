@@ -11,7 +11,7 @@ class ManageCoursesView(ManageUserView):
 
     def get(self, request, *args, **kwargs):
         local_context = {'courses': Courses.objects.all(),
-                         'username': request.user.username,
+                         'username': request.user.name,
                          'avatar': request.user.avatar,
                          }
         local_context.update(self.context)
