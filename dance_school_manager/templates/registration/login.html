@@ -1,37 +1,32 @@
 {% extends "registration/base_generic.html" %}
 
 {% block content %}
+ <div class="container">
+     <h1>Welcome to Dance School Managment System DSMS</h1>
 
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
+<div class="form-box">
+    <span class="log-in-p"><p>Log in</p></span>
+  <form class="input-group" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+      <input class="input-field" type="text" name="username"  autofocus="" autocapitalize="none" autocomplete="username" maxlength="60" required="" placeholder="Email Adress">
+      <input class="input-field" type="password" name="password" autocomplete="current-password" required="" placeholder="Password">
+      <button type="submit" class="submit-btn">Log in</button>
+      <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+      <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+    {% if form.errors %}
+    <span class="log-error-p"><p>Your username and password didn't match. Please try again.</p></span>
   {% endif %}
 
   {% if next %}
     {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
+      <span class="log-error-p"><p>Your account doesn't have access to this page. To proceed,
+          please login with an account that has access.</p></span>
     {% else %}
-      <p>Please login to see this page.</p>
+            <span class="log-error-p"><p>Please login to see this page.</p></span>
     {% endif %}
   {% endif %}
-
-  <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <table>
-      <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-      </tr>
-    </table>
-    <input type="submit" value="login" />
-    <input type="hidden" name="next" value="{{ next }}" />
-  </form>
-
+</div>
   {# Assumes you setup the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
+ </div>
 {% endblock %}
