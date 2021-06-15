@@ -34,7 +34,7 @@ class SettingsViews(UpdateView):
     form = UserChangeForm
     template_name = 'profiles/teacher/settings.html'
     success_url = reverse_lazy('teacher_module:teacher_profile_view')
-    fields = {'email', 'username'}
+    fields = {'email', 'username', 'name', 'surname'}
 
     def get_object(self):
         return self.request.user

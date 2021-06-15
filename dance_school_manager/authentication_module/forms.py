@@ -24,7 +24,7 @@ class StudentSignUpForm(UserCreationForm):
 class EditProfileForm(UserChangeForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'name', 'username')
+        fields = ('username', 'email', 'name', 'surname')
 
 
 class ReportAbsenceForm(forms.ModelForm):

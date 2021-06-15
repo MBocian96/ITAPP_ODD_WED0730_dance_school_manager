@@ -38,7 +38,7 @@ class ClientSettingsView(UpdateView):
     form = UserChangeForm
     template_name = 'profiles/student/student_profile_settings.html'
     success_url = reverse_lazy('client_module:user_view')
-    fields = {'email', 'username'}
+    fields = {'email', 'username', 'name', 'surname'}
 
     def get_object(self):
         return self.request.user
