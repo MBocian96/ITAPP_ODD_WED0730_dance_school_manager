@@ -5,17 +5,12 @@
 <div class="contrainer">
     <div class="main">
         <div class="topbar">
-            <button class="submit-btn test" onclick="location.href = '/authentication/logout/'"
-                type="button">
+            <button class="submit-btn" onclick="location.href = '/authentication/logout/'" type="button">
                 LOGOUT
             </button>
-            <div class="dropdown test">
-                <button>CONTACT</button>
-                    <div class="dropdown-content">
-                        Adres:Testowa 12
-                        Numer:663742964
-                    </div>
-            </div>
+            <button class="submit-btn" onclick="location.href = 'teacher_module:contact'" type="button">
+                CONTACT
+            </button>
         </div>
         <div class="row">
             <div class="col-md-4 mt-1">
@@ -78,8 +73,8 @@
                                 </div>
 						    </div>
 					</div>
-                    <div class="card mb-3c content">
-    <table>
+        <div class="card mb-3c content">
+            <table>
             <tr>
                 <th> Name of the course</th>
                 <th> Description</th>
@@ -110,6 +105,6 @@
                 </td>
             </tr>
         {% endfor %}
-    </table>
+        </table>
 </div>
 {% endblock %}

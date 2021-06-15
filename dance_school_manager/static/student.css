@@ -5,12 +5,13 @@ body{
 .main{
 	font-family: Arial, Helvetica, sans-serif;
 }
-.topbar{
-	background-color: orange;
+.topbar {
+	background-color: #ffad06;
 	overflow: hidden;
 	margin-bottom: 3%;
+	display: flex;
 }
-.topbar a{
+.topbar a {
 	float: right;
 	color: whitesmoke;
 	text-align: center;
@@ -119,19 +120,27 @@ body{
 }
 
 .submit-btn {
-    width: 10%;
     padding: 10px 30px;
+    width: 10%;
     cursor: pointer;
     display: block;
     margin:10px auto;
     outline: none;
     font-size: 15px;
     text-decoration: none;
+    border:0;
+    background-color: #ffad06;
+    border-radius: 30px;
 }
-
-.submit-btn:hover{
+.submit-btn:hover {
     background: linear-gradient(to right, #ff105f, #ffad06);
     border-radius: 30px;
+}
+    .submit-btn a{
+    font-size:20px;
+    outline: none;
+    text-decoration: none;
+    color:black;
 }
 .coursepage-container {
     display: flex;
@@ -158,25 +167,6 @@ body{
     text-align: center;
     background: whitesmoke;
 }
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 10px 30px;
-  z-index: 1;
-  top: -5px;
-  right: 105%;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
 .test{
 	float: right;
 	text-align: center;
@@ -192,4 +182,23 @@ body{
 
 .table1 th{
 width:300px;
+}
+.showcase {
+    width: 35%;
+    height: 65%;
+    position: relative;
+    margin: 3% auto;
+    background-color: rgba(220, 220, 220, 0.85);
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.container {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(back_login.jpg);
+    background-position: center;
+    background-size: cover;
+    display: block;
+    position: absolute;
 }
